@@ -1,6 +1,6 @@
 # 4hv.org Forums Reimagined
 
-This project aims to recreate the original 4hv.org forums using a modern tech stack. The goal is to provide an enhanced and user-friendly platform for the high voltage, electronics, and DIY community, while maintaining the spirit and essence of the original forums.
+This project aims to recreate the original 4hv.org forums using modern web design. The goal is to provide an enhanced and user-friendly platform for the high voltage, electronics, and DIY community, while maintaining the spirit and essence of the original forums.
 
 ## Features (WIP 🚧)
 
