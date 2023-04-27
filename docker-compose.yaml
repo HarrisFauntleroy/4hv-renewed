@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: ${APP_NAME}-app
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: 'linux/amd64'
+    volumes:
+      - app:/data
+    networks:
+      - internal
+    depends_on:
+      - postgres
+
+  # Primary database
+  postgres:
+    container_name: ${APP_NAME}-postgres
+    command: -p ${POSTGRES_PORT}
+    restart: always
+    image: postgres:14
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  # Backups for the database
+  postgres-backup:
+    container_name: ${APP_NAME}-postgres-backup
+    restart: always
+    image: prodrigestivill/postgres-backup-local
+    env_file:
+      - .env
+    volumes:
+      - backups:/var/lib/postgresql/data
+    networks:
+      - internal
+    depends_on:
+      - postgres
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  app:
+  postgres:
+  backups:
