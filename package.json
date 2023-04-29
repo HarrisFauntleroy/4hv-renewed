@@ -163,7 +163,7 @@
     "@choc-ui/chakra-autocomplete": "^5.1.4",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@next-auth/prisma-adapter": "1.0.5",
+    "@next-auth/prisma-adapter": "1.0.6",
     "@playwright/test": "^1.27.1",
     "@prisma/client": "4.4.0",
     "@tanstack/match-sorter-utils": "^8.5.14",
