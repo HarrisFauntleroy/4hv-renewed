@@ -1,8 +1,3 @@
-import { Comment } from '../../components/Comment';
-import { CommentForm } from '../../components/Comment/Form';
-import { Loading } from '../../components/Loading';
-import { ThreadForm } from '../../components/Thread/Form';
-import { trpc } from '../../utils/trpc';
 import {
   Avatar,
   Breadcrumb,
@@ -23,6 +18,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { PropsWithChildren } from 'react';
+import { Comment } from '../../components/Comment';
+import { CommentForm } from '../../components/Comment/Form';
+import { Loading } from '../../components/Loading';
+import { ThreadForm } from '../../components/Thread/Form';
+import { trpc } from '../../utils/trpc';
 
 const ThreadLayout = ({ children }: PropsWithChildren) => (
   <Grid
@@ -51,7 +51,7 @@ const ThreadLayout = ({ children }: PropsWithChildren) => (
 
 const Thread = () => {
   const router = useRouter();
-  const id = router.query.id || '';
+  const id = String(router.query.id);
 
   const { data: thread, status } = trpc.useQuery(['thread.byId', { id }]);
 
@@ -82,7 +82,7 @@ const Thread = () => {
         </Flex>
         <Flex align="center" gap={1}>
           <span>
-            <Image height="32px" width="32px" src="/images/e.png" alt="" />
+            <Image height="32" width="32" src="/images/e.png" alt="" />
           </span>
 
           <Text

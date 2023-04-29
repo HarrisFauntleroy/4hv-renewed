@@ -77,8 +77,8 @@ const GridHeader = ({ title, children }: GridHeaderProps) => (
       >
         <Image
           alt="Blue circle"
-          width="16px"
-          height="16px"
+          width="16"
+          height="16"
           src="/images/bullet2.gif"
         />
         <Flex align="center" width="100%">
@@ -108,7 +108,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         background="#8fa1c4"
       >
         <Flex maxHeight="77px">
-          <Image src="/images/logo.png" alt="" height="77px" width="455px" />
+          <Image src="/images/logo.png" alt="" height="77" width="455" />
         </Flex>
       </Flex>
       <Flex
@@ -130,12 +130,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           }}
         />
         <Flex padding="2px 3px 0 0px">
-          <Image
-            alt="search"
-            src="/images/search.png"
-            width="18px"
-            height="19px"
-          />
+          <Image alt="search" src="/images/search.png" width="18" height="19" />
         </Flex>
       </Flex>
       <Grid
@@ -236,7 +231,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
               bold have donated recently. Green bold denotes those who have
               recently donated to keep the server carbon neutral.
             </Text>
-            <Image src="/images/paypal.gif" alt="" height="44px" width="77px" />
+            <Image src="/images/paypal.gif" alt="" height="44" width="77" />
             <Text>Special Thanks To:</Text>
             <ul>
               <li>Hazzwold</li>
@@ -284,8 +279,8 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   <Image
                     src="/images/new_small.png"
                     alt=""
-                    height="16px"
-                    width="16px"
+                    height="16"
+                    width="16"
                   />
                   <Stack>
                     <Text>New</Text>
@@ -296,8 +291,8 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   <Image
                     src="/images/nonew_small.png"
                     alt=""
-                    height="16px"
-                    width="16px"
+                    height="16"
+                    width="16"
                   />
                   <Stack>
                     <Text>No</Text>
@@ -309,8 +304,8 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                   <Image
                     src="/images/closed_small.png"
                     alt=""
-                    height="16px"
-                    width="16px"
+                    height="16"
+                    width="16"
                   />
                   <Stack>
                     <Text>Closed</Text>

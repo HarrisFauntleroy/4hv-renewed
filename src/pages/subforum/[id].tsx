@@ -1,9 +1,3 @@
-import { Loading } from '../../components/Loading';
-import { Breadcrumb } from '../../components/Subforum/Breadcrumb';
-import { SubforumHeaders } from '../../components/Subforum/SubforumHeaders';
-import { Thread } from '../../components/Thread';
-import { ThreadForm } from '../../components/Thread/Form';
-import { trpc } from '../../utils/trpc';
 import {
   Flex,
   Stack,
@@ -15,6 +9,12 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { Loading } from '../../components/Loading';
+import { Breadcrumb } from '../../components/Subforum/Breadcrumb';
+import { SubforumHeaders } from '../../components/Subforum/SubforumHeaders';
+import { Thread } from '../../components/Thread';
+import { ThreadForm } from '../../components/Thread/Form';
+import { trpc } from '../../utils/trpc';
 
 const Subforum = () => {
   const router = useRouter();
@@ -46,7 +46,7 @@ const Subforum = () => {
         </Flex>
         <Flex align="center" gap={1}>
           <span>
-            <Image height="32px" width="32px" src="/images/e.png" alt="" />
+            <Image height="32" width="32" src="/images/e.png" alt="" />
           </span>
 
           <Text

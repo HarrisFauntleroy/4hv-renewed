@@ -1,9 +1,8 @@
-import { CommentWithComments } from '../Comment';
 import { Flex, Td, Text, Tr } from '@chakra-ui/react';
-import { type Thread as PrismaThread, User } from '@prisma/client';
+import { User, type Thread as PrismaThread } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { CommentWithComments } from '../Comment';
 
 export interface ThreadWithComments extends PrismaThread {
   user: User;
@@ -15,7 +14,7 @@ export const Thread = (thread: ThreadWithComments) => {
     <Tr background="#fefefe" height="46px">
       <Td border="2px solid #fff" padding="4px" bg="#e4eaf2" maxWidth="32px">
         <Flex gap={1} align="center">
-          <Image height="22px" width="22px" alt="" src="/images/nonew.png" />
+          <Image height="22" width="22" alt="" src="/images/nonew.png" />
 
           <Link href={`/thread/${thread.id}`}>
             <Text

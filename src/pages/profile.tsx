@@ -3,13 +3,11 @@
  * Profile page
  *
  */
-import { DefaultPage } from './_app';
 import { Stack, Text } from '@chakra-ui/react';
 import { Role } from '@prisma/client';
 import Head from 'next/head';
-import React from 'react';
 
-const Profile: DefaultPage = () => {
+const Profile = () => {
   return (
     <Stack gap={2}>
       <Head>

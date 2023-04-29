@@ -3,13 +3,11 @@
  * Settings page
  *
  */
-import { DefaultPage } from './_app';
 import { Stack, Text } from '@chakra-ui/react';
 import { Role } from '@prisma/client';
 import Head from 'next/head';
-import React from 'react';
 
-const Settings: DefaultPage = () => {
+const Settings = () => {
   return (
     <Stack gap={2}>
       <Head>

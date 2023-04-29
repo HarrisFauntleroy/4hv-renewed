@@ -3,6 +3,7 @@
  * App
  *
  */
+import { Role } from '@prisma/client';
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
@@ -16,13 +17,14 @@ import superjson from 'superjson';
 import SEO from '../../next-seo.config';
 import { AppContext } from '../components/AppContext';
 import { DefaultLayout as Layout } from '../components/Layout';
-import type { WithAuth, WithRole } from '../pages/api/auth/[...nextauth]';
 import Auth from '../pages/auth';
 import type { AppRouter } from '../server/routers/_app';
 import type { SSRContext } from '../utils/trpc';
 
-export interface DefaultPage extends FC, WithAuth, WithRole {
+export interface DefaultPage extends FC {
   getLayout?: (page: ReactElement) => ReactNode;
+  auth: boolean;
+  roles: Role[];
 }
 
 type AppPropsWithLayout = AppProps & {
