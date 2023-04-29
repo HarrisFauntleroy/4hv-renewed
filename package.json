@@ -18,7 +18,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "yarn generate",
+    "prebuild": "prisma generate",
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "build-storybook": "storybook build",
