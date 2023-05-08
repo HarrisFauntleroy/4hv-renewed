@@ -204,7 +204,7 @@
     "remark-parse": "10.0.1",
     "remarkable": "2.0.1",
     "remove": "^0.1.5",
-    "superjson": "1.12.2",
+    "superjson": "1.12.3",
     "unified": "10.1.2",
     "uuid": "9.0.0",
     "ws": "8.13.0",
