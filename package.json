@@ -180,7 +180,7 @@
     "framer-motion": "7.10.3",
     "katex": "0.16.7",
     "mermaid": "9.4.3",
-    "next": "13.3.4",
+    "next": "13.4.4",
     "next-auth": "^4.18.7",
     "next-remove-imports": "1.0.7",
     "next-seo": "^5.14.1",
