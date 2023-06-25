@@ -1,5 +1,7 @@
 # 4hv.org Forums Reimagined
 
+⚠️ WORK IN PROGRESS SIDE PROJECT ⚠️
+
 Rekindling the passion for electronics and DIY, we're bringing back the original 4hv.org forums - now in a modern, user-friendly avatar. We aim to retain the heart and soul of the original while packing it with powerful features for an enriched user experience.
 
 ---
