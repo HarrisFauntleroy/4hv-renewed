@@ -2,6 +2,16 @@
 
 Rekindling the passion for electronics and DIY, we're bringing back the original 4hv.org forums - now in a modern, user-friendly avatar. We aim to retain the heart and soul of the original while packing it with powerful features for an enriched user experience.
 
+---
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/4hv-renewed?style=flat-square)
+
+[![CI Actions 🤖](https://github.com/HarrisFauntleroy/4hv-renewed/actions/workflows/ci.yml/badge.svg)](https://github.com/HarrisFauntleroy/4hv-renewed/actions/workflows/ci.yml)
+
+[![Code Coverage 📊](https://github.com/HarrisFauntleroy/4hv-renewed/actions/workflows/coverage.yml/badge.svg)](https://github.com/HarrisFauntleroy/4hv-renewed/actions/workflows/coverage.yml)
+
+---
+
 ## Features (In progress 🚧)
 
 - ⚡ A sleek, responsive, and modern user interface
@@ -11,6 +21,8 @@ Rekindling the passion for electronics and DIY, we're bringing back the original
 - 👤 User profiles with customizable settings
 - 📚 Thread subscriptions and bookmarks for easy access
 - 👍 Upvoting, downvoting, and a reputation system to highlight valuable contributions
+
+---
 
 ## Local Development
 
@@ -30,7 +42,7 @@ Node is managed using Node Version Manager
 nvm use <version>
 ```
 
-## Installation
+### Installation
 
 **Yarn**
 
@@ -48,15 +60,11 @@ yarn dev
 
 ---
 
-<!-- LICENSE -->
-
 ## **License** ⚖️
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-
-<!-- DISCLAIMER -->
 
 ## **Disclaimer** 🚨
 
