@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    platform: 'linux/amd64'
+    volumes:
+      - app:/data
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    networks:
+      - proxy_network
+
+  # Database service
+  database:
+    command: -p 5432
+    restart: always
+    image: postgres:15
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - proxy_network
+
+# Define networks
+networks:
+  proxy_network:
+    driver: bridge
+
+# Define volumes
+volumes:
+  app:
+  postgres:
