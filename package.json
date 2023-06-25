@@ -41,6 +41,7 @@
     "test:watch": "yarn test --watchAll",
     "type-check": "tsc --noEmit",
     "watch": "yarn type-check --watch",
+    "prepare": "husky install",
     "start-db": "docker-compose up database"
   },
   "lint-staged": {
