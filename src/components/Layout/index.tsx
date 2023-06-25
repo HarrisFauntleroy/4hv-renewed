@@ -344,19 +344,5 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         </GridItem>
       </Grid>
     </Flex>
-
-    // <>
-    // 	{/* <Header /> */}
-    // 	<Image src="" alt="" layout="fill" />
-    // 	<Flex direction="column" flex={1} minHeight="100vh" maxWidth="100vw">
-    // 		<Box flex={1} padding="16px">
-    // 			{children}
-    // 		</Box>
-    // 	</Flex>
-    // 	<Footer />
-    // 	{process.env.NODE_ENV === "development" && (
-    // 		<ReactQueryDevtools initialIsOpen={false} />
-    // 	)}
-    // </>
   );
 };

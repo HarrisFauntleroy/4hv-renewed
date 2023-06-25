@@ -1,8 +1,12 @@
-import { Card } from '@chakra-ui/react';
-import React from 'react';
+import { Card } from '@mantine/core';
+import { Changelog } from 'src/components/Releases';
 
 const Index = () => {
-  return <Card>News</Card>;
+  return (
+    <Card bg="transparent">
+      <Changelog repo="HarrisFauntleroy/4hv-renewed" />
+    </Card>
+  );
 };
 
 export default Index;

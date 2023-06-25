@@ -1,8 +1,3 @@
-/**
- *
- * Header
- *
- */
 import {
   Avatar,
   Box,
@@ -24,7 +19,6 @@ import {
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 import {
   MdChevronRight,
   MdLightMode,
@@ -97,19 +91,13 @@ const Header = () => {
                   cursor={'pointer'}
                   minW={0}
                 >
-                  <Avatar
-                    size={'sm'}
-                    src={user?.image ?? '/images/user-not-found.jpg'}
-                  />
+                  <Avatar size={'sm'} src={user?.image || ''} />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
                   <Center>
                     <Link href="/profile">
-                      <Avatar
-                        size={'2xl'}
-                        src={user?.image ?? '/images/user-not-found.jpg'}
-                      />
+                      <Avatar size={'2xl'} src={user?.image || ''} />
                     </Link>
                   </Center>
                   <br />
@@ -133,7 +121,7 @@ const Header = () => {
                     icon={session ? <MdLogout /> : <MdLogin />}
                     onClick={
                       session
-                        ? () => signOut({ callbackUrl: '/' })
+                        ? () => signOut({ callbackUrl: '/', redirect: false })
                         : () => signIn()
                     }
                   >

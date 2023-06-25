@@ -11,8 +11,12 @@ on:
 
 # Prevents this workflow from running twice at the same time for the same ref.
 concurrency:
+<<<<<<< HEAD
   group:
     ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+=======
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+>>>>>>> 10aa6d7 (fix build)
   cancel-in-progress: true
 
 jobs:
@@ -30,7 +34,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+<<<<<<< HEAD
           cache: "yarn"
+=======
+          cache: 'yarn'
+>>>>>>> 10aa6d7 (fix build)
 
       - name: Install dependencies 📦
         run: yarn

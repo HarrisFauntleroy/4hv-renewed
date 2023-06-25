@@ -1,71 +1,55 @@
-/**
- *
- *	Auth page
- *	Checks if user logged in before allowing access to page
- *
- */
-import { Center, CircularProgress } from '@chakra-ui/react';
+import { Center, Text } from '@mantine/core';
 import { Role } from '@prisma/client';
-import { NextPageContext } from 'next';
+import type { NextPageContext } from 'next';
 import { getSession, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import { Fragment, PropsWithChildren } from 'react';
 
-enum Status {
-  AUTHENTICATED = 'authenticated',
-  LOADING = 'loading',
-  UNAUTHENTICATED = 'unauthenticated',
-}
+type AuthProps<T> = PropsWithChildren<T> & { roles?: Role[] };
 
-interface AuthProps {
-  children: React.ReactElement<
-    unknown,
-    string | React.JSXElementConstructor<unknown>
-  > | null;
-  // An array of roles from the current page
-  roles?: Role[];
-}
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
 
-export const getServerSideProps = async (context: NextPageContext) => ({
-  props: {
-    session: await getSession(context),
-  },
-});
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+  return { props: { session } };
+};
 
-const Auth = ({ children, roles }: AuthProps) => {
-  const router = useRouter();
-  const { data: session, status } = useSession({ required: true });
-  const loading = status === Status.LOADING;
-  const role = session?.user.role || Role.USER;
+function Auth<T>({ children, roles }: AuthProps<T>) {
+  const { data: session, status } = useSession({
+    required: true,
+  });
 
-  useEffect(() => {
-    if (!loading && !session) {
-      router.push('/api/auth/signin');
-    }
-  }, [loading, router, session]);
+  const userRole = session?.user?.role || Role.USER;
+  const rolesArray = roles || [Role.USER];
+  const roleAllowed = rolesArray.includes(userRole) || userRole === Role.ADMIN;
 
-  const isRoleAllowed = () => roles && !roles?.includes(role);
-  const isWaitingForSession = () => loading || !session;
+  const CenterMessage = ({ message }: { message: string }) => (
+    <Center h="100%">
+      <Text>{message}</Text>
+    </Center>
+  );
 
-  if (isWaitingForSession()) {
+  if (status === 'loading') {
+    return <CenterMessage message="Loading..." />;
+  }
+
+  if (!session) {
+    return <CenterMessage message="You must be logged in to view this page." />;
+  }
+
+  if (!roleAllowed) {
     return (
-      <Center
-        position="fixed"
-        minWidth="100vw"
-        minHeight="100vh"
-        background="transparent"
-        top={0}
-        left={0}
-      >
-        <CircularProgress isIndeterminate size="64px" thickness="8px" />
-      </Center>
+      <CenterMessage message="You do not have the necessary permissions to view this page." />
     );
   }
-  if (isRoleAllowed()) {
-    router.push('/api/auth/signin');
-  }
-  // Continue
-  return children;
-};
+
+  return <Fragment>{children}</Fragment>;
+}
 
 export default Auth;

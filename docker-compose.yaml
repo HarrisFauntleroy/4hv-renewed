@@ -13,13 +13,12 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - postgres
+      - database
     networks:
       - proxy_network
 
   # Database service
   database:
-    container_name: database
     command: -p 5432
     restart: always
     image: postgres:15

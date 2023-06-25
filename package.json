@@ -22,12 +22,14 @@
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "build-storybook": "storybook build",
-    "clean": "rimraf .turbo node_modules dist tsconfig.tsbuildinfo",
-    "dev": "next dev -p 3000",
+    "dev": "next dev",
     "lint": "yarn esw . --ext .js,.jsx,.ts,.tsx --color",
     "lint:fix": "yarn esw . --ext .js,.jsx,.ts,.tsx --fix --color",
     "lint:watch": "yarn esw . --ext .js,.jsx,.ts,.tsx --watch --fix --color --changed --clear",
     "format": "prettier --write .",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:seed": "prisma db seed",
     "reset-db": "docker-compose down --volumes --remove-orphans",
     "start": "next start",
     "storybook": "storybook dev -p 6007",
@@ -38,16 +40,13 @@
     "test:ci": "yarn test --ci --coverage --maxWorkers=2",
     "test:watch": "yarn test --watchAll",
     "type-check": "tsc --noEmit",
-    "watch": "yarn type-check --watch"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "watch": "yarn type-check --watch",
+    "start-db": "docker-compose up database"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn format"
+    "*.{ts,tsx}": [
+      "yarn format",
+      "yarn lint:fix"
     ]
   },
   "browserslist": {
@@ -142,7 +141,7 @@
       ],
       "@next/next/no-html-link-for-pages": [
         "error",
-        "pages"
+        "src/pages"
       ]
     },
     "ignorePatterns": [
@@ -150,6 +149,11 @@
     ]
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    },
     "testEnvironment": "node",
     "testRegex": ".test.*",
     "transform": {
@@ -163,11 +167,17 @@
     "@choc-ui/chakra-autocomplete": "^5.1.4",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mantine/core": "^6.0.11",
+    "@mantine/hooks": "^6.0.11",
+    "@mantine/modals": "^6.0.11",
+    "@mantine/notifications": "^6.0.11",
     "@next-auth/prisma-adapter": "1.0.6",
     "@playwright/test": "^1.34.3",
     "@prisma/client": "4.15.0",
     "@tanstack/match-sorter-utils": "^8.8.4",
     "@tanstack/react-table": "^8.9.1",
+    "@octokit/types": "^9.2.3",
+    "@tanstack/react-query": "^4.29.11",
     "@trpc/client": "9.27.2",
     "@trpc/next": "9.27.2",
     "@trpc/react": "9.27.2",
@@ -181,6 +191,9 @@
     "katex": "0.16.7",
     "mermaid": "9.4.3",
     "next": "13.4.4",
+    "cookies-next": "^2.1.1",
+    "date-fns": "^2.30.0",
+    "marked": "^5.0.3",
     "next-auth": "^4.18.7",
     "next-remove-imports": "1.0.7",
     "next-seo": "^5.15.0",
@@ -204,6 +217,7 @@
     "remark-parse": "10.0.1",
     "remarkable": "2.0.1",
     "remove": "^0.1.5",
+    "sanitize-html": "^2.10.0",
     "superjson": "1.12.2",
     "unified": "10.1.2",
     "uuid": "9.0.0",
@@ -254,12 +268,12 @@
     "storybook": "^7.0.4",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "5.1.3"
+    "typescript": "5.0.3"
   },
   "publishConfig": {
     "access": "restricted"
   },
   "prisma": {
-    "seed": "yarn ts-node prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

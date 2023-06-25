@@ -1,7 +1,7 @@
 // @ts-check
 /**
- * File included in `/next.config.js` which ensures the app isn't built with invalid env vars.
- * Must be a `.js`-file to import.
+ * This file is included in `/next.config.js` which ensures the app isn't built with invalid env vars.
+ * It has to be a `.js`-file to be imported there.
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { z } = require('zod');
@@ -12,14 +12,16 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
 });
 
-const env = envSchema.safeParse(process.env);
+if (process.env.NODE_ENV !== 'test') {
+  const env = envSchema.safeParse(process.env);
 
-if (!env.success) {
-  console.error(
-    '❌  environment variables:',
-    JSON.stringify(env.error.format(), null, 4),
-  );
-  process.exit(1);
+  if (!env.success) {
+    console.error(
+      '❌  environment variables:',
+      JSON.stringify(env.error.format(), null, 4),
+    );
+    process.exit(1);
+  }
+
+  module.exports.env = env.data;
 }
-
-module.exports.env = env.data;
