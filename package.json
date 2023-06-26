@@ -101,9 +101,13 @@
       "@typescript-eslint",
       "simple-import-sort",
       "import",
+      "security",
       "sonarjs",
       "jsx-a11y",
-      "prettier"
+      "storybook",
+      "jest",
+      "prettier",
+      "progress"
     ],
     "extends": [
       "next",
@@ -111,12 +115,15 @@
       "eslint:recommended",
       "plugin:import/typescript",
       "plugin:import/recommended",
+      "plugin:security/recommended",
       "plugin:sonarjs/recommended",
       "plugin:jsx-a11y/recommended",
       "plugin:storybook/recommended",
+      "plugin:jest/recommended",
       "plugin:prettier/recommended"
     ],
     "rules": {
+      "progress/activate": 1,
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -144,6 +151,10 @@
         "error",
         "src/pages"
       ]
+    },
+    "globals": {
+      "JSX": true,
+      "React": true
     },
     "ignorePatterns": [
       "dist"
