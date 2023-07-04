@@ -2,7 +2,7 @@
 
 ⚠️ WORK IN PROGRESS SIDE PROJECT ⚠️
 
-[![CI Actions 🚀🤖](https://github.com/HarrisFauntleroy/markdown-notes/actions/workflows/ci.yml/badge.svg)](https://github.com/HarrisFauntleroy/markdown-notes/actions/workflows/ci.yml)[![Code Coverage 📊](https://github.com/HarrisFauntleroy/markdown-notes/actions/workflows/coverage.yml/badge.svg)](https://github.com/HarrisFauntleroy/markdown-notes/actions/workflows/coverage.yml)![GitHub commit activity](https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/markdown-notes?style=flat)
+[![CI Actions 🚀🤖](https://github.com/HarrisFauntleroy/4hv.org-project/actions/workflows/ci.yml/badge.svg)](https://github.com/HarrisFauntleroy/4hv.org-project/actions/workflows/ci.yml)[![Code Coverage 📊](https://github.com/HarrisFauntleroy/4hv.org-project/actions/workflows/coverage.yml/badge.svg)](https://github.com/HarrisFauntleroy/4hv.org-project/actions/workflows/coverage.yml)![GitHub commit activity](https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/4hv.org-project?style=flat)
 
 Rekindling the passion for electronics and DIY, we're bringing back the original
 4hv.org forums - now in a modern, user-friendly avatar. We aim to retain the
