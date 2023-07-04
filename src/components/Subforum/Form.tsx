@@ -14,13 +14,13 @@ import {
   Textarea,
   useDisclosure,
   useToast,
-} from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-import { SubforumWithThreads } from '.';
-import logger from '../../utils/logger';
-import { trpc } from '../../utils/trpc';
-import { AlertPop } from '../Form/AlertPop';
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { SubforumWithThreads } from ".";
+import logger from "../../utils/logger";
+import { trpc } from "../../utils/trpc";
+import { AlertPop } from "../Form/AlertPop";
 
 type FormValues = SubforumWithThreads;
 
@@ -47,31 +47,31 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
           variant="flushed"
           type="text"
           placeholder="Title"
-          {...register('title', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("title", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
-        {errors.title && <AlertPop message={errors.title.message || ''} />}
+        {errors.title && <AlertPop message={errors.title.message || ""} />}
         <Textarea
           variant="flushed"
           placeholder="Description"
-          {...register('description', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("description", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
         {errors.description && (
-          <AlertPop message={errors.description.message || ''} />
+          <AlertPop message={errors.description.message || ""} />
         )}
       </ModalBody>
       <ModalFooter>
         <Button
           borderRadius="md"
           bg="green.300"
-          _hover={{ bg: 'green.400' }}
+          _hover={{ bg: "green.400" }}
           type="submit"
         >
           Submit
@@ -81,12 +81,12 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
   );
 };
 
-const allSubforums = 'subforum.all';
+const allSubforums = "subforum.all";
 
-interface SubforumFormProps extends Pick<IconButtonProps, 'icon'> {
+interface SubforumFormProps extends Pick<IconButtonProps, "icon"> {
   subforum?: SubforumWithThreads;
   forumId?: string;
-  mode: 'update' | 'create' | 'delete' | 'archive' | 'unarchive';
+  mode: "update" | "create" | "delete" | "archive" | "unarchive";
   label?: string;
 }
 
@@ -101,31 +101,31 @@ export const SubforumForm = ({
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const createSubforum = trpc.useMutation('subforum.create', {
+  const createSubforum = trpc.useMutation("subforum.create", {
     async onSuccess() {
       await utils.invalidateQueries([allSubforums]);
     },
   });
 
-  const updateSubforum = trpc.useMutation('subforum.update', {
+  const updateSubforum = trpc.useMutation("subforum.update", {
     async onSuccess() {
       await utils.invalidateQueries([allSubforums]);
     },
   });
 
-  const deleteSubforum = trpc.useMutation('subforum.delete', {
+  const deleteSubforum = trpc.useMutation("subforum.delete", {
     async onSuccess() {
       await utils.invalidateQueries([allSubforums]);
     },
   });
 
-  const archiveSubforum = trpc.useMutation('subforum.archive', {
+  const archiveSubforum = trpc.useMutation("subforum.archive", {
     async onSuccess() {
       await utils.invalidateQueries([allSubforums]);
     },
   });
 
-  const unarchiveSubforum = trpc.useMutation('subforum.unarchive', {
+  const unarchiveSubforum = trpc.useMutation("subforum.unarchive", {
     async onSuccess() {
       await utils.invalidateQueries([allSubforums]);
     },
@@ -139,7 +139,7 @@ export const SubforumForm = ({
 
   const middlebit = () => {
     switch (mode) {
-      case 'create':
+      case "create":
         return (
           userId &&
           forumId && (
@@ -153,9 +153,9 @@ export const SubforumForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Subforumed!',
-                      status: 'success',
+                    return toast({
+                      title: "Subforumed!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -165,7 +165,7 @@ export const SubforumForm = ({
             />
           )
         );
-      case 'update':
+      case "update":
         return (
           userId &&
           subforum &&
@@ -181,9 +181,9 @@ export const SubforumForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Updated!',
-                      status: 'success',
+                    return toast({
+                      title: "Updated!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -193,16 +193,16 @@ export const SubforumForm = ({
             />
           )
         );
-      case 'delete':
+      case "delete":
         return (
           subforum && (
             <Button
               onClick={() =>
                 deleteSubforum.mutateAsync({ id: subforum.id }).then(() => {
                   onClose();
-                  toast({
-                    title: 'Deleted!',
-                    status: 'success',
+                  return toast({
+                    title: "Deleted!",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
                   });
@@ -213,7 +213,7 @@ export const SubforumForm = ({
             </Button>
           )
         );
-      case 'archive':
+      case "archive":
         return (
           subforum && (
             <Button
@@ -222,9 +222,9 @@ export const SubforumForm = ({
                   .mutateAsync({ id: subforum.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Archived!',
-                      status: 'success',
+                    return toast({
+                      title: "Archived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -236,7 +236,7 @@ export const SubforumForm = ({
             </Button>
           )
         );
-      case 'unarchive':
+      case "unarchive":
         return (
           subforum && (
             <Button
@@ -245,9 +245,9 @@ export const SubforumForm = ({
                   .mutateAsync({ id: subforum.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Unarchived!',
-                      status: 'success',
+                    return toast({
+                      title: "Unarchived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });

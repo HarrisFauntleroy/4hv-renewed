@@ -1,10 +1,10 @@
-import logger from '../../../utils/logger';
-import { InferQueryOutput } from '../../../utils/trpc';
-import { createRouter } from '../../createRouter';
-import { prisma } from '../../prisma';
-import { Prisma } from '@prisma/client';
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import logger from "../../../utils/logger";
+import { InferQueryOutput } from "../../../utils/trpc";
+import { createRouter } from "../../createRouter";
+import { prisma } from "../../prisma";
+import { Prisma } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 const defaultForumSelect = Prisma.validator<Prisma.ForumSelect>()({
   id: true,
@@ -30,11 +30,11 @@ const defaultForumSelect = Prisma.validator<Prisma.ForumSelect>()({
   user: true,
 });
 
-export type ForumWithRelations = InferQueryOutput<'forum.all'>;
+export type ForumWithRelations = InferQueryOutput<"forum.all">;
 
 export const forumRouter = createRouter()
   // create
-  .mutation('add', {
+  .mutation("add", {
     input: z.object({
       userId: z.string(),
       title: z.string(),
@@ -47,7 +47,7 @@ export const forumRouter = createRouter()
     },
   })
   // read
-  .query('all', {
+  .query("all", {
     async resolve() {
       /**
        * For pagination you can have a look at this docs site
@@ -82,7 +82,7 @@ export const forumRouter = createRouter()
       });
     },
   })
-  .query('byId', {
+  .query("byId", {
     input: z.object({
       id: z.string(),
     }),
@@ -96,14 +96,14 @@ export const forumRouter = createRouter()
       });
       if (!forum) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No forum with id '${id}'`,
         });
       }
       return forum;
     },
   })
-  .query('byUser', {
+  .query("byUser", {
     input: z.object({
       userId: z.string(),
     }),
@@ -135,7 +135,7 @@ export const forumRouter = createRouter()
       });
       if (!forum) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No forum with userId '${userId}'`,
         });
       }
@@ -144,7 +144,7 @@ export const forumRouter = createRouter()
     },
   })
   // update
-  .mutation('edit', {
+  .mutation("edit", {
     input: z.object({
       id: z.string(),
       userId: z.string(),
@@ -162,7 +162,7 @@ export const forumRouter = createRouter()
     },
   })
   // delete
-  .mutation('delete', {
+  .mutation("delete", {
     input: z.object({
       id: z.string(),
     }),
@@ -178,7 +178,7 @@ export const forumRouter = createRouter()
     },
   })
   // unarchive
-  .mutation('unarchive', {
+  .mutation("unarchive", {
     input: z.object({
       id: z.string(),
     }),
@@ -194,7 +194,7 @@ export const forumRouter = createRouter()
     },
   })
   // archive
-  .mutation('archive', {
+  .mutation("archive", {
     input: z.object({
       id: z.string(),
     }),

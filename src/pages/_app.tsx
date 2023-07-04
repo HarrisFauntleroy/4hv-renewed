@@ -3,23 +3,23 @@
  * App
  *
  */
-import { Role } from '@prisma/client';
-import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
-import { loggerLink } from '@trpc/client/links/loggerLink';
-import { withTRPC } from '@trpc/next';
-import type { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
-import { DefaultSeo } from 'next-seo';
-import type { AppProps } from 'next/app';
-import type { AppType } from 'next/dist/shared/lib/utils';
-import type { FC, ReactElement, ReactNode } from 'react';
-import superjson from 'superjson';
-import SEO from '../../next-seo.config';
-import { DefaultLayout as Layout } from '../components/Layout';
-import { AppContext } from '../components/Providers';
-import Auth from '../pages/auth';
-import type { AppRouter } from '../server/routers/_app';
-import type { SSRContext } from '../utils/trpc';
+import { Role } from "@prisma/client";
+import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
+import { loggerLink } from "@trpc/client/links/loggerLink";
+import { withTRPC } from "@trpc/next";
+import type { Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import { DefaultSeo } from "next-seo";
+import type { AppProps } from "next/app";
+import type { AppType } from "next/dist/shared/lib/utils";
+import type { FC, ReactElement, ReactNode } from "react";
+import superjson from "superjson";
+import SEO from "../../next-seo.config";
+import { DefaultLayout as Layout } from "../components/Layout";
+import { AppContext } from "../components/Providers";
+import Auth from "../pages/auth";
+import type { AppRouter } from "../server/routers/_app";
+import type { SSRContext } from "../utils/trpc";
 
 export interface DefaultPage extends FC {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -54,8 +54,8 @@ const MyApp = (({ Component, pageProps, session }: AppPropsWithLayout) => {
 }) as AppType;
 
 function getBaseUrl() {
-  if (typeof window !== 'undefined') {
-    return '';
+  if (typeof window !== "undefined") {
+    return "";
   }
 
   // Reference for vercel.com
@@ -86,8 +86,8 @@ export default withTRPC<AppRouter>({
         // Adds pretty logs to your console in development and logs errors in production
         loggerLink({
           enabled: (options) =>
-            process.env.NODE_ENV === 'development' ||
-            (options.direction === 'down' && options.result instanceof Error),
+            process.env.NODE_ENV === "development" ||
+            (options.direction === "down" && options.result instanceof Error),
         }),
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,

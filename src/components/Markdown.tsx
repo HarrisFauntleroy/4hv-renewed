@@ -1,6 +1,6 @@
-import { Text } from '@mantine/core';
-import { marked } from 'marked';
-import sanitizeHtml from 'sanitize-html';
+import { Text } from "@mantine/core";
+import { marked } from "marked";
+import sanitizeHtml from "sanitize-html";
 
 export function Markdown({ children }: { children: string }) {
   const parsed = marked(children, { mangle: false, headerIds: false });
@@ -8,7 +8,7 @@ export function Markdown({ children }: { children: string }) {
   return (
     <Text
       dangerouslySetInnerHTML={{ __html: sanitized }}
-      style={{ wordWrap: 'break-word' }}
+      style={{ wordWrap: "break-word" }}
     />
   );
 }

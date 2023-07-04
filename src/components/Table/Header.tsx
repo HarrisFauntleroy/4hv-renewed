@@ -1,9 +1,9 @@
-import { Th } from '@chakra-ui/react';
-import { Header, flexRender } from '@tanstack/react-table';
-import { InputDataTypes } from '../Table';
+import { Th } from "@chakra-ui/react";
+import { Header, flexRender } from "@tanstack/react-table";
+import { InputDataTypes } from "../Table";
 
 function TableHeader<TData extends InputDataTypes>(
-  header: Header<TData, unknown>,
+  header: Header<TData, unknown>
 ) {
   return (
     <Th key={header.id}>
@@ -11,7 +11,7 @@ function TableHeader<TData extends InputDataTypes>(
         <button
           style={
             header.column.getCanSort()
-              ? { cursor: 'pointer', userSelect: 'none' }
+              ? { cursor: "pointer", userSelect: "none" }
               : {}
           }
           onClick={header.column.getToggleSortingHandler()}
@@ -20,8 +20,8 @@ function TableHeader<TData extends InputDataTypes>(
         >
           {flexRender(header.column.columnDef.header, header.getContext())}
           {{
-            asc: ' 🔼',
-            desc: ' 🔽',
+            asc: " 🔼",
+            desc: " 🔽",
           }[header.column.getIsSorted() as string] ?? null}
         </button>
       )}

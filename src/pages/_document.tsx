@@ -3,9 +3,9 @@
  * Custom _document
  *
  */
-import { ColorModeScript } from '@chakra-ui/react';
-import { Head, Html, Main, NextScript } from 'next/document';
-import React from 'react';
+import { ColorModeScript } from "@chakra-ui/react";
+import { Head, Html, Main, NextScript } from "next/document";
+import React from "react";
 
 const Document = () => {
   return (

@@ -1,15 +1,15 @@
-import { Avatar, Text, Timeline, Title } from '@mantine/core';
-import { Endpoints } from '@octokit/types';
-import { format } from 'date-fns';
-import { Fragment, useEffect, useState } from 'react';
-import { Markdown } from '../Markdown';
+import { Avatar, Text, Timeline, Title } from "@mantine/core";
+import { Endpoints } from "@octokit/types";
+import { format } from "date-fns";
+import { Fragment, useEffect, useState } from "react";
+import { Markdown } from "../Markdown";
 
 type Props = { repo: string };
 
 type ListRepositoryReleasesResponse =
-  Endpoints['GET /repos/{owner}/{repo}/releases']['response'];
+  Endpoints["GET /repos/{owner}/{repo}/releases"]["response"];
 
-export type ReleaseData = ListRepositoryReleasesResponse['data'];
+export type ReleaseData = ListRepositoryReleasesResponse["data"];
 
 export function Releases({ repo }: Props) {
   const [data, setData] = useState<ReleaseData>();
@@ -17,15 +17,15 @@ export function Releases({ repo }: Props) {
   useEffect(() => {
     fetch(`https://api.github.com/repos/${repo}/releases`, {
       headers: {
-        Accept: 'application/vnd.github+json',
-        Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        'X-GitHub-Api-Version': '2022-11-28',
+        "Accept": "application/vnd.github+json",
+        "Authorization": `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+        "X-GitHub-Api-Version": "2022-11-28",
       },
     })
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        console.log(data);
+        return console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -41,7 +41,7 @@ export function Releases({ repo }: Props) {
           title={
             <Text>
               Alchemical Finance
-              {' - '}
+              {" - "}
               {release.tag_name}
             </Text>
           }
@@ -54,7 +54,7 @@ export function Releases({ repo }: Props) {
             component="span"
             inherit
           >
-            {format(new Date(release.published_at || ''), 'MMM dd, yyyy')}
+            {format(new Date(release.published_at || ""), "MMM dd, yyyy")}
           </Text>
         </Timeline.Item>
       ))}

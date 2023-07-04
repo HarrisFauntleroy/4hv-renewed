@@ -1,8 +1,8 @@
-import { createRouter } from '../../createRouter';
-import { prisma } from '../../prisma';
-import { Prisma } from '@prisma/client';
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import { createRouter } from "../../createRouter";
+import { prisma } from "../../prisma";
+import { Prisma } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 const defaultThreadSelect = Prisma.validator<Prisma.ThreadSelect>()({
   id: true,
@@ -32,7 +32,7 @@ const defaultThreadSelect = Prisma.validator<Prisma.ThreadSelect>()({
 
 export const threadRouter = createRouter()
   // create
-  .mutation('create', {
+  .mutation("create", {
     input: z.object({
       userId: z.string(),
       title: z.string(),
@@ -47,7 +47,7 @@ export const threadRouter = createRouter()
       });
     },
   })
-  .query('all', {
+  .query("all", {
     async resolve() {
       return prisma.thread.findMany({
         where: {
@@ -59,7 +59,7 @@ export const threadRouter = createRouter()
       });
     },
   })
-  .query('byId', {
+  .query("byId", {
     input: z.object({
       id: z.string(),
     }),
@@ -73,14 +73,14 @@ export const threadRouter = createRouter()
       });
       if (!thread) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No thread with id '${id}'`,
         });
       }
       return thread;
     },
   })
-  .query('byUser', {
+  .query("byUser", {
     input: z.object({
       userId: z.string(),
     }),
@@ -97,7 +97,7 @@ export const threadRouter = createRouter()
       });
       if (!thread) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No thread with userId '${userId}'`,
         });
       }
@@ -105,7 +105,7 @@ export const threadRouter = createRouter()
     },
   })
   // update
-  .mutation('update', {
+  .mutation("update", {
     input: z.object({
       id: z.string(),
       userId: z.string(),
@@ -123,7 +123,7 @@ export const threadRouter = createRouter()
     },
   })
   // delete
-  .mutation('delete', {
+  .mutation("delete", {
     input: z.object({
       id: z.string(),
     }),
@@ -139,7 +139,7 @@ export const threadRouter = createRouter()
     },
   })
   // unarchive
-  .mutation('unarchive', {
+  .mutation("unarchive", {
     input: z.object({
       id: z.string(),
     }),
@@ -155,7 +155,7 @@ export const threadRouter = createRouter()
     },
   })
   // archive
-  .mutation('archive', {
+  .mutation("archive", {
     input: z.object({
       id: z.string(),
     }),

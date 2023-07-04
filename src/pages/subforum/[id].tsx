@@ -6,23 +6,23 @@ import {
   Tbody,
   Text,
   Tr,
-} from '@chakra-ui/react';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Loading } from '../../components/Loading';
-import { Breadcrumb } from '../../components/Subforum/Breadcrumb';
-import { SubforumHeaders } from '../../components/Subforum/SubforumHeaders';
-import { Thread } from '../../components/Thread';
-import { ThreadForm } from '../../components/Thread/Form';
-import { trpc } from '../../utils/trpc';
+} from "@chakra-ui/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { Loading } from "../../components/Loading";
+import { Breadcrumb } from "../../components/Subforum/Breadcrumb";
+import { SubforumHeaders } from "../../components/Subforum/SubforumHeaders";
+import { Thread } from "../../components/Thread";
+import { ThreadForm } from "../../components/Thread/Form";
+import { trpc } from "../../utils/trpc";
 
 const Subforum = () => {
   const router = useRouter();
   const id = router.query.id as string;
 
-  const { data: subforum, status } = trpc.useQuery(['subforum.byId', { id }]);
+  const { data: subforum, status } = trpc.useQuery(["subforum.byId", { id }]);
 
-  if (status === 'loading') return <Loading />;
+  if (status === "loading") return <Loading />;
 
   return (
     <TableContainer height="100%" key={subforum?.id}>

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CloseIcon } from '@chakra-ui/icons';
-import { Input, InputGroup, InputRightElement } from '@chakra-ui/react';
-import { rankItem } from '@tanstack/match-sorter-utils';
-import { Column, FilterFn, Row, Table } from '@tanstack/react-table';
-import { InputHTMLAttributes, useEffect, useState } from 'react';
-import { InputDataTypes } from '.';
-import { Debug } from '../Debug';
+import { CloseIcon } from "@chakra-ui/icons";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { rankItem } from "@tanstack/match-sorter-utils";
+import { Column, FilterFn, Row, Table } from "@tanstack/react-table";
+import { InputHTMLAttributes, useEffect, useState } from "react";
+import { InputDataTypes } from ".";
+import { Debug } from "../Debug";
 
 export function Filter<TData extends InputDataTypes>({
   column,
@@ -20,11 +20,11 @@ export function Filter<TData extends InputDataTypes>({
 
   const columnFilterValue = column.getFilterValue();
 
-  return typeof firstValue === 'number' ? (
+  return typeof firstValue === "number" ? (
     <div>
       <input
         type="number"
-        value={(columnFilterValue as [number, number])?.[0] ?? ''}
+        value={(columnFilterValue as [number, number])?.[0] ?? ""}
         onChange={(e) =>
           column.setFilterValue((old: [number, number]) => [
             e.target.value,
@@ -36,7 +36,7 @@ export function Filter<TData extends InputDataTypes>({
       />
       <input
         type="number"
-        value={(columnFilterValue as [number, number])?.[1] ?? ''}
+        value={(columnFilterValue as [number, number])?.[1] ?? ""}
         onChange={(e) =>
           column.setFilterValue((old: [number, number]) => [
             old?.[0],
@@ -50,7 +50,7 @@ export function Filter<TData extends InputDataTypes>({
   ) : (
     <input
       type="text"
-      value={(columnFilterValue ?? '') as string}
+      value={(columnFilterValue ?? "") as string}
       onChange={(e) => column.setFilterValue(e.target.value)}
       placeholder="Search..."
       className="w-36 border shadow rounded"
@@ -68,7 +68,7 @@ export function DebouncedInput({
   value: string | number;
   onChange: (value: string | number) => void;
   debounce?: number;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "onChange">) {
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export function DebouncedInput({
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <InputRightElement cursor="pointer" onClick={() => setValue('')}>
+      <InputRightElement cursor="pointer" onClick={() => setValue("")}>
         <CloseIcon />
       </InputRightElement>
     </InputGroup>

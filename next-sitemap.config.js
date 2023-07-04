@@ -1,5 +1,5 @@
 const NextSitemapConfig = {
-  siteUrl: 'https://elixir-money.vercel.app/',
+  siteUrl: "https://elixir-money.vercel.app/",
   generateRobotsTxt: true,
 };
 

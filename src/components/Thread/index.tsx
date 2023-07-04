@@ -1,8 +1,8 @@
-import { Flex, Td, Text, Tr } from '@chakra-ui/react';
-import { User, type Thread as PrismaThread } from '@prisma/client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { CommentWithComments } from '../Comment';
+import { Flex, Td, Text, Tr } from "@chakra-ui/react";
+import { User, type Thread as PrismaThread } from "@prisma/client";
+import Image from "next/image";
+import Link from "next/link";
+import { CommentWithComments } from "../Comment";
 
 export interface ThreadWithComments extends PrismaThread {
   user: User;

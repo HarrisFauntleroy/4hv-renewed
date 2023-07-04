@@ -1,5 +1,5 @@
-import { Th, Thead, Tr } from '@chakra-ui/react';
-import React, { PropsWithChildren } from 'react';
+import { Th, Thead, Tr } from "@chakra-ui/react";
+import React, { PropsWithChildren } from "react";
 
 const TableHeader = ({ children }: PropsWithChildren) => (
   <Th

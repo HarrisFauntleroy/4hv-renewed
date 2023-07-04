@@ -9,8 +9,8 @@ import {
   Th,
   Thead,
   Tr,
-} from '@chakra-ui/react';
-import { RankingInfo } from '@tanstack/match-sorter-utils';
+} from "@chakra-ui/react";
+import { RankingInfo } from "@tanstack/match-sorter-utils";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -28,21 +28,21 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 import {
   Fragment,
   ReactElement,
   useState,
   type PropsWithChildren,
-} from 'react';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import { InferQueryOutput } from '../../utils/trpc';
-import { Show } from '../Show';
-import TableHeader from '../Table/Header';
-import { Pagination } from '../Table/Pagination';
-import { DebouncedInput, fuzzyFilter } from './Filter';
+} from "react";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { InferQueryOutput } from "../../utils/trpc";
+import { Show } from "../Show";
+import TableHeader from "../Table/Header";
+import { Pagination } from "../Table/Pagination";
+import { DebouncedInput, fuzzyFilter } from "./Filter";
 
-declare module '@tanstack/table-core' {
+declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
   }
@@ -52,7 +52,7 @@ declare module '@tanstack/table-core' {
 }
 
 /** Extend all possible input types */
-export type InputDataTypes = InferQueryOutput<'forum.all'>;
+export type InputDataTypes = InferQueryOutput<"forum.all">;
 
 export type TableProps<TData> = {
   /** Table ID allows for persistent state on some table settings */
@@ -78,7 +78,7 @@ export const Table = <TData extends InputDataTypes>({
   id,
 }: TableProps<TData>) => {
   /** Global filter - search */
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = useState("");
 
   /** Column filter - search */
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -86,7 +86,7 @@ export const Table = <TData extends InputDataTypes>({
   /** Column sorting */
   const [sorting, setSorting] = useLocalStorage<SortingState>(
     `table-sort-${id}`,
-    [],
+    []
   );
 
   /** Pagination state */
@@ -133,7 +133,7 @@ export const Table = <TData extends InputDataTypes>({
       <HStack>{children}</HStack>
       <Show when={!!filterEnabled}>
         <DebouncedInput
-          value={globalFilter ?? ''}
+          value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(String(value))}
           placeholder="Search all columns..."
         />
@@ -155,7 +155,7 @@ export const Table = <TData extends InputDataTypes>({
                     <Td key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </Td>
                   ))}
@@ -180,7 +180,7 @@ export const Table = <TData extends InputDataTypes>({
                       ? null
                       : flexRender(
                           header.column.columnDef.footer,
-                          header.getContext(),
+                          header.getContext()
                         )}
                   </Th>
                 ))}

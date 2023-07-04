@@ -7,9 +7,9 @@ import {
   Link,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
-import { Comment as PrismaComment, User } from '@prisma/client';
-import React, { PropsWithChildren } from 'react';
+} from "@chakra-ui/react";
+import { Comment as PrismaComment, User } from "@prisma/client";
+import React, { PropsWithChildren } from "react";
 
 const CommentLayout = ({ children }: PropsWithChildren) => (
   <Grid
@@ -23,14 +23,14 @@ const CommentLayout = ({ children }: PropsWithChildren) => (
 			 			 "content"`,
     }}
     gridTemplateRows={{
-      sm: 'repeat(6, minmax(max-content))',
-      base: 'repeat(8, max-content)',
+      sm: "repeat(6, minmax(max-content))",
+      base: "repeat(8, max-content)",
     }}
-    gridTemplateColumns={{ sm: '160px 1fr', base: '100vw' }}
+    gridTemplateColumns={{ sm: "160px 1fr", base: "100vw" }}
     gridAutoFlow="dense"
     gridGap="8px"
     // Nicer to read
-    color={useColorModeValue('blackAlpha.700', 'whiteAlpha.700')}
+    color={useColorModeValue("blackAlpha.700", "whiteAlpha.700")}
   >
     {children}
   </Grid>
@@ -44,13 +44,13 @@ export interface CommentWithComments extends PrismaComment {
 export const Comment = (comment: CommentWithComments) => {
   return (
     <CommentLayout>
-      <GridItem area={'user'} boxShadow="base">
-        <Avatar src={comment.user.image ?? ''} />
+      <GridItem area={"user"} boxShadow="base">
+        <Avatar src={comment.user.image ?? ""} />
         <Link href={`/user/${comment.userId}`}>
           <Text>{comment.user.name}</Text>
         </Link>
       </GridItem>
-      <GridItem area={'content'} boxShadow="base">
+      <GridItem area={"content"} boxShadow="base">
         <Card>
           <CardBody>{comment.content}</CardBody>
         </Card>

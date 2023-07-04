@@ -1,6 +1,6 @@
-import { StackProps } from '@chakra-ui/react';
-import NextHead from 'next/head';
-import { PropsWithChildren } from 'react';
+import { StackProps } from "@chakra-ui/react";
+import NextHead from "next/head";
+import { PropsWithChildren } from "react";
 
 interface HeadProps extends PropsWithChildren, StackProps {
   title?: string;

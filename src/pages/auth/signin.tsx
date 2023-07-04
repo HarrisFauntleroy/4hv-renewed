@@ -9,11 +9,11 @@ import {
   Stack,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
-import { NextPage, NextPageContext } from 'next';
-import { getCsrfToken, getProviders, signIn } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-import logger from '../../utils/logger';
+} from "@chakra-ui/react";
+import { NextPage, NextPageContext } from "next";
+import { getCsrfToken, getProviders, signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import logger from "../../utils/logger";
 
 interface Provider {
   id: string;
@@ -33,36 +33,36 @@ const Signin = ({ providers, csrfToken }: SignInProps) => {
   return (
     <Center width="100vw" height="100vh">
       <Box
-        maxW={'320px'}
-        w={'full'}
-        bg={useColorModeValue('white', 'gray.900')}
-        boxShadow={'2xl'}
-        rounded={'lg'}
+        maxW={"320px"}
+        w={"full"}
+        bg={useColorModeValue("white", "gray.900")}
+        boxShadow={"2xl"}
+        rounded={"lg"}
         p={6}
-        textAlign={'center'}
+        textAlign={"center"}
       >
         <Avatar
-          size={'xl'}
-          src={'/images/cosmicoctopus.jpeg'}
+          size={"xl"}
+          src={"/images/cosmicoctopus.jpeg"}
           mb={4}
-          pos={'relative'}
+          pos={"relative"}
           _after={{
             content: '""',
             w: 4,
             h: 4,
-            bg: 'green.300',
-            border: '2px solid white',
-            rounded: 'full',
-            pos: 'absolute',
+            bg: "green.300",
+            border: "2px solid white",
+            rounded: "full",
+            pos: "absolute",
             bottom: 0,
             right: 3,
           }}
         />
-        <Heading fontSize={'2xl'} fontFamily={'body'}></Heading>
-        <Text fontWeight={600} color={'gray.500'} mb={4}>
+        <Heading fontSize={"2xl"} fontFamily={"body"}></Heading>
+        <Text fontWeight={600} color={"gray.500"} mb={4}>
           Sign in or register
         </Text>
-        <Stack mt={4} direction={'column'} spacing={4}>
+        <Stack mt={4} direction={"column"} spacing={4}>
           <form
             method="post"
             action="/api/auth/signin/email"

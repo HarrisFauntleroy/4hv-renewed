@@ -3,10 +3,10 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   Breadcrumb as ChakraBreadCrumb,
-} from '@chakra-ui/react';
-import { Subforum } from '@prisma/client';
-import Link from 'next/link';
-import React from 'react';
+} from "@chakra-ui/react";
+import { Subforum } from "@prisma/client";
+import Link from "next/link";
+import React from "react";
 
 interface BreadcrumbProps {
   subforum?: Subforum;

@@ -14,13 +14,13 @@ import {
   Textarea,
   useDisclosure,
   useToast,
-} from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-import { ThreadWithComments } from '.';
-import logger from '../../utils/logger';
-import { trpc } from '../../utils/trpc';
-import { AlertPop } from '../Form/AlertPop';
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { ThreadWithComments } from ".";
+import logger from "../../utils/logger";
+import { trpc } from "../../utils/trpc";
+import { AlertPop } from "../Form/AlertPop";
 
 type FormValues = ThreadWithComments;
 
@@ -47,29 +47,29 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
           variant="flushed"
           type="text"
           placeholder="Title"
-          {...register('title', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("title", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
-        {errors.title && <AlertPop message={errors.title.message || ''} />}
+        {errors.title && <AlertPop message={errors.title.message || ""} />}
         <Textarea
           variant="flushed"
           placeholder="Content"
-          {...register('content', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("content", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
-        {errors.content && <AlertPop message={errors.content.message || ''} />}
+        {errors.content && <AlertPop message={errors.content.message || ""} />}
       </ModalBody>
       <ModalFooter>
         <Button
           borderRadius="md"
           bg="green.300"
-          _hover={{ bg: 'green.400' }}
+          _hover={{ bg: "green.400" }}
           type="submit"
         >
           Submit
@@ -79,12 +79,12 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
   );
 };
 
-const allThreads = 'thread.all';
+const allThreads = "thread.all";
 
-interface ThreadFormProps extends Pick<IconButtonProps, 'icon'> {
+interface ThreadFormProps extends Pick<IconButtonProps, "icon"> {
   thread?: ThreadWithComments;
   subforumId?: string;
-  mode: 'update' | 'create' | 'delete' | 'archive' | 'unarchive';
+  mode: "update" | "create" | "delete" | "archive" | "unarchive";
   label?: string;
 }
 
@@ -99,31 +99,31 @@ export const ThreadForm = ({
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const createThread = trpc.useMutation('thread.create', {
+  const createThread = trpc.useMutation("thread.create", {
     async onSuccess() {
       await utils.invalidateQueries([allThreads]);
     },
   });
 
-  const updateThread = trpc.useMutation('thread.update', {
+  const updateThread = trpc.useMutation("thread.update", {
     async onSuccess() {
       await utils.invalidateQueries([allThreads]);
     },
   });
 
-  const deleteThread = trpc.useMutation('thread.delete', {
+  const deleteThread = trpc.useMutation("thread.delete", {
     async onSuccess() {
       await utils.invalidateQueries([allThreads]);
     },
   });
 
-  const archiveThread = trpc.useMutation('thread.archive', {
+  const archiveThread = trpc.useMutation("thread.archive", {
     async onSuccess() {
       await utils.invalidateQueries([allThreads]);
     },
   });
 
-  const unarchiveThread = trpc.useMutation('thread.unarchive', {
+  const unarchiveThread = trpc.useMutation("thread.unarchive", {
     async onSuccess() {
       await utils.invalidateQueries([allThreads]);
     },
@@ -137,7 +137,7 @@ export const ThreadForm = ({
 
   const middlebit = () => {
     switch (mode) {
-      case 'create':
+      case "create":
         return (
           userId &&
           subforumId && (
@@ -151,9 +151,9 @@ export const ThreadForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Threaded!',
-                      status: 'success',
+                    return toast({
+                      title: "Threaded!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -163,7 +163,7 @@ export const ThreadForm = ({
             />
           )
         );
-      case 'update':
+      case "update":
         return (
           userId &&
           thread &&
@@ -179,9 +179,9 @@ export const ThreadForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Updated!',
-                      status: 'success',
+                    return toast({
+                      title: "Updated!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -191,16 +191,16 @@ export const ThreadForm = ({
             />
           )
         );
-      case 'delete':
+      case "delete":
         return (
           thread && (
             <Button
               onClick={() =>
                 deleteThread.mutateAsync({ id: thread.id }).then(() => {
                   onClose();
-                  toast({
-                    title: 'Deleted!',
-                    status: 'success',
+                  return toast({
+                    title: "Deleted!",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
                   });
@@ -211,7 +211,7 @@ export const ThreadForm = ({
             </Button>
           )
         );
-      case 'archive':
+      case "archive":
         return (
           thread && (
             <Button
@@ -220,9 +220,9 @@ export const ThreadForm = ({
                   .mutateAsync({ id: thread.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Archived!',
-                      status: 'success',
+                    return toast({
+                      title: "Archived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -234,7 +234,7 @@ export const ThreadForm = ({
             </Button>
           )
         );
-      case 'unarchive':
+      case "unarchive":
         return (
           thread && (
             <Button
@@ -243,9 +243,9 @@ export const ThreadForm = ({
                   .mutateAsync({ id: thread.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Unarchived!',
-                      status: 'success',
+                    return toast({
+                      title: "Unarchived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });

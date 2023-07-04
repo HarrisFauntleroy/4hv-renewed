@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import logger from '../utils/logger';
+import { useState } from "react";
+import logger from "../utils/logger";
 
 /** Custom hook to persist to local storage in the manner of useState */
 const useLocalStorage = <T,>(
   key: string,
-  initialValue: T,
+  initialValue: T
 ): readonly [T, (value: T | ((val: T) => T)) => void] => {
   /**
    * State to store our value
    * Pass initial state function to useState
    */
   const [storedValue, setStoredValue] = useState<T>(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return initialValue;
     }
     try {
@@ -40,7 +40,7 @@ const useLocalStorage = <T,>(
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {

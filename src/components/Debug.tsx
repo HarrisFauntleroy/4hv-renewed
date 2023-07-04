@@ -5,11 +5,11 @@
  * Displays in development environment
  *
  */
-import { Heading, Stat } from '@chakra-ui/react';
-import React from 'react';
+import { Heading, Stat } from "@chakra-ui/react";
+import React from "react";
 
 export const Debug = (props: Record<string, unknown>) =>
-  process.env.NODE_ENV === 'development' ? (
+  process.env.NODE_ENV === "development" ? (
     <Stat mt={4}>
       <Heading my={2} as="h4" fontSize="16px">
         Raw data:

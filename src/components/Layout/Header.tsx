@@ -15,10 +15,10 @@ import {
   MenuList,
   Stack,
   useColorMode,
-} from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+} from "@chakra-ui/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   MdChevronRight,
   MdLightMode,
@@ -26,7 +26,7 @@ import {
   MdLogout,
   MdNightsStay,
   MdSettings,
-} from 'react-icons/md';
+} from "react-icons/md";
 
 const Header = () => {
   const location = useRouter();
@@ -42,8 +42,8 @@ const Header = () => {
    *
    */
   const pathArr = pathName
-    ?.replace(/#/g, '')
-    ?.split('/')
+    ?.replace(/#/g, "")
+    ?.split("/")
     .filter((n) => n);
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <>
       <Box px={6} id="back-to-top-anchor">
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Breadcrumb
             aria-label="breadcrumb"
             separator={
@@ -61,43 +61,43 @@ const Header = () => {
             }
             textTransform="lowercase"
           >
-            <BreadcrumbItem isCurrentPage={pathName === '/'}>
+            <BreadcrumbItem isCurrentPage={pathName === "/"}>
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             {pathArr?.map((path, index) => (
               <BreadcrumbItem
-                key={'breadcrumbs' + index}
-                isCurrentPage={pathName.replace('/', '') === path}
+                key={"breadcrumbs" + index}
+                isCurrentPage={pathName.replace("/", "") === path}
               >
-                <BreadcrumbLink href={'/' + path}>{path}</BreadcrumbLink>
+                <BreadcrumbLink href={"/" + path}>{path}</BreadcrumbLink>
               </BreadcrumbItem>
             ))}
           </Breadcrumb>
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={1}>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={1}>
               <IconButton
                 variant="link"
                 onClick={toggleColorMode}
-                aria-label={''}
+                aria-label={""}
                 icon={
-                  colorMode === 'light' ? <MdLightMode /> : <MdNightsStay />
+                  colorMode === "light" ? <MdLightMode /> : <MdNightsStay />
                 }
               />
               <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
                   minW={0}
                 >
-                  <Avatar size={'sm'} src={user?.image || ''} />
+                  <Avatar size={"sm"} src={user?.image || ""} />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems={"center"}>
                   <br />
                   <Center>
                     <Link href="/profile">
-                      <Avatar size={'2xl'} src={user?.image || ''} />
+                      <Avatar size={"2xl"} src={user?.image || ""} />
                     </Link>
                   </Center>
                   <br />
@@ -121,11 +121,11 @@ const Header = () => {
                     icon={session ? <MdLogout /> : <MdLogin />}
                     onClick={
                       session
-                        ? () => signOut({ callbackUrl: '/', redirect: false })
+                        ? () => signOut({ callbackUrl: "/", redirect: false })
                         : () => signIn()
                     }
                   >
-                    {session ? 'Sign Out' : 'Sign In'}
+                    {session ? "Sign Out" : "Sign In"}
                   </MenuItem>
                 </MenuList>
               </Menu>

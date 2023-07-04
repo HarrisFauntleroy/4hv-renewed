@@ -3,9 +3,9 @@
  * Settings page
  *
  */
-import { Stack, Text } from '@chakra-ui/react';
-import { Role } from '@prisma/client';
-import Head from 'next/head';
+import { Stack, Text } from "@chakra-ui/react";
+import { Role } from "@prisma/client";
+import Head from "next/head";
 
 const Settings = () => {
   return (

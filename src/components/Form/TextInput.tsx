@@ -4,8 +4,8 @@ import {
   FormLabel,
   Input,
   type InputProps as ChakraInputProps,
-} from '@chakra-ui/react';
-import { UseFormRegister, ValidationRule } from 'react-hook-form';
+} from "@chakra-ui/react";
+import { UseFormRegister, ValidationRule } from "react-hook-form";
 
 interface InputProps {
   name: string;

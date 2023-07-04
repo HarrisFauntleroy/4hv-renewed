@@ -13,9 +13,9 @@ import {
   DrawerOverlay,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+} from "@chakra-ui/react";
+import Link from "next/link";
+import React from "react";
 
 export interface ISidebarContent {
   icon?: React.ReactNode;

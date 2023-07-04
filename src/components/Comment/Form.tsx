@@ -1,7 +1,3 @@
-import { CommentWithComments } from '.';
-import logger from '../../utils/logger';
-import { trpc } from '../../utils/trpc';
-import { AlertPop } from '../Form/AlertPop';
 import {
   Button,
   Modal as ChakraModal,
@@ -17,9 +13,13 @@ import {
   useDisclosure,
   useToast,
   type IconButtonProps,
-} from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { CommentWithComments } from ".";
+import logger from "../../utils/logger";
+import { trpc } from "../../utils/trpc";
+import { AlertPop } from "../Form/AlertPop";
 
 type FormValues = CommentWithComments;
 
@@ -45,20 +45,20 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
         <Textarea
           variant="flushed"
           placeholder="Content"
-          {...register('content', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("content", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
-        {errors.content && <AlertPop message={errors.content.message || ''} />}
+        {errors.content && <AlertPop message={errors.content.message || ""} />}
       </ModalBody>
       <ModalFooter>
         <Button
           disabled={formState.isSubmitting}
           borderRadius="md"
           bg="green.300"
-          _hover={{ bg: 'green.400' }}
+          _hover={{ bg: "green.400" }}
           type="submit"
         >
           Submit
@@ -68,13 +68,13 @@ export const Form = ({ onSubmit, defaultValues }: FormProps) => {
   );
 };
 
-const allComments = 'comment.all';
+const allComments = "comment.all";
 
-interface CommentFormProps extends Pick<IconButtonProps, 'icon'> {
+interface CommentFormProps extends Pick<IconButtonProps, "icon"> {
   comment?: CommentWithComments;
   threadId?: string;
   parentId?: string;
-  mode: 'update' | 'create' | 'delete' | 'archive' | 'unarchive';
+  mode: "update" | "create" | "delete" | "archive" | "unarchive";
   label?: string;
 }
 
@@ -89,31 +89,31 @@ export const CommentForm = ({
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const createComment = trpc.useMutation('comment.create', {
+  const createComment = trpc.useMutation("comment.create", {
     async onSuccess() {
       await utils.invalidateQueries([allComments]);
     },
   });
 
-  const updateComment = trpc.useMutation('comment.update', {
+  const updateComment = trpc.useMutation("comment.update", {
     async onSuccess() {
       await utils.invalidateQueries([allComments]);
     },
   });
 
-  const deleteComment = trpc.useMutation('comment.delete', {
+  const deleteComment = trpc.useMutation("comment.delete", {
     async onSuccess() {
       await utils.invalidateQueries([allComments]);
     },
   });
 
-  const archiveComment = trpc.useMutation('comment.archive', {
+  const archiveComment = trpc.useMutation("comment.archive", {
     async onSuccess() {
       await utils.invalidateQueries([allComments]);
     },
   });
 
-  const unarchiveComment = trpc.useMutation('comment.unarchive', {
+  const unarchiveComment = trpc.useMutation("comment.unarchive", {
     async onSuccess() {
       await utils.invalidateQueries([allComments]);
     },
@@ -127,7 +127,7 @@ export const CommentForm = ({
 
   const middlebit = () => {
     switch (mode) {
-      case 'create':
+      case "create":
         return (
           userId &&
           threadId && (
@@ -141,9 +141,9 @@ export const CommentForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Commented!',
-                      status: 'success',
+                    return toast({
+                      title: "Commented!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -153,7 +153,7 @@ export const CommentForm = ({
             />
           )
         );
-      case 'update':
+      case "update":
         return (
           userId &&
           comment &&
@@ -169,9 +169,9 @@ export const CommentForm = ({
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Updated!',
-                      status: 'success',
+                    return toast({
+                      title: "Updated!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -181,16 +181,16 @@ export const CommentForm = ({
             />
           )
         );
-      case 'delete':
+      case "delete":
         return (
           comment && (
             <Button
               onClick={() =>
                 deleteComment.mutateAsync({ id: comment.id }).then(() => {
                   onClose();
-                  toast({
-                    title: 'Deleted!',
-                    status: 'success',
+                  return toast({
+                    title: "Deleted!",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
                   });
@@ -201,7 +201,7 @@ export const CommentForm = ({
             </Button>
           )
         );
-      case 'archive':
+      case "archive":
         return (
           comment && (
             <Button
@@ -210,9 +210,9 @@ export const CommentForm = ({
                   .mutateAsync({ id: comment.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Archived!',
-                      status: 'success',
+                    return toast({
+                      title: "Archived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -224,7 +224,7 @@ export const CommentForm = ({
             </Button>
           )
         );
-      case 'unarchive':
+      case "unarchive":
         return (
           comment && (
             <Button
@@ -233,9 +233,9 @@ export const CommentForm = ({
                   .mutateAsync({ id: comment.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Unarchived!',
-                      status: 'success',
+                    return toast({
+                      title: "Unarchived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });

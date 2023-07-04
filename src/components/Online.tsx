@@ -1,12 +1,12 @@
-import { Divider, Flex, List, ListItem } from '@chakra-ui/react';
-import Image from 'next/image';
-import { trpc } from '../utils/trpc';
-import { Loading } from './Loading';
+import { Divider, Flex, List, ListItem } from "@chakra-ui/react";
+import Image from "next/image";
+import { trpc } from "../utils/trpc";
+import { Loading } from "./Loading";
 
 export const Online = () => {
-  const { data: users, status } = trpc.useQuery(['user.online']);
+  const { data: users, status } = trpc.useQuery(["user.online"]);
 
-  if (status === 'loading') return <Loading />;
+  if (status === "loading") return <Loading />;
 
   return (
     <List>

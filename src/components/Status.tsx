@@ -1,13 +1,13 @@
-import { Center, Tooltip, keyframes } from '@chakra-ui/react';
-import React from 'react';
+import { Center, Tooltip, keyframes } from "@chakra-ui/react";
+import React from "react";
 
 interface Props {
   active: boolean;
 }
 
 export const StatusIndicator = ({ active }: Props) => {
-  const activeColor = 'green.500';
-  const inactiveColor = 'gray.400';
+  const activeColor = "green.500";
+  const inactiveColor = "gray.400";
   const ringScaleMin = 0.33;
   const ringScaleMax = 0.66;
 

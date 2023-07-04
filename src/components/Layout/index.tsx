@@ -18,45 +18,45 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-} from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
-import React, { PropsWithChildren, ReactNode } from 'react';
-import { MdLogin, MdLogout } from 'react-icons/md';
-import { ForumForm } from '../Forum/Form';
-import { Online } from '../Online';
-import { Navigation } from './Navigation';
+} from "@chakra-ui/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import React, { PropsWithChildren, ReactNode } from "react";
+import { MdLogin, MdLogout } from "react-icons/md";
+import { ForumForm } from "../Forum/Form";
+import { Online } from "../Online";
+import { Navigation } from "./Navigation";
 
 type DefaultLayoutProps = { children: ReactNode };
 
 const cardHeaderStyle: React.CSSProperties = {
-  height: '18px',
-  fontSize: '10px',
-  fontFamily: 'verdana, tahoma, arial, sans-serif',
-  color: '#FFF',
-  background: 'linear-gradient(#c7d3e6 10%, #869ac0 40%, #8d9fc2 50%)',
-  borderBottom: '1px solid black',
+  height: "18px",
+  fontSize: "10px",
+  fontFamily: "verdana, tahoma, arial, sans-serif",
+  color: "#FFF",
+  background: "linear-gradient(#c7d3e6 10%, #869ac0 40%, #8d9fc2 50%)",
+  borderBottom: "1px solid black",
 };
 
 const cardContentStyle: React.CSSProperties = {
-  padding: '4px 5px 5px 4px',
+  padding: "4px 5px 5px 4px",
   // boxShadow: "0 0 8px #000",
-  flex: '1',
+  flex: "1",
 };
 
 const cardStyle: React.CSSProperties = {
-  fontFamily: 'verdana, tahoma, arial, helvetica, sans-serif',
-  fontSize: '10px',
-  background: '#DAE7F3',
-  color: '#000',
-  borderRadius: '4px',
+  fontFamily: "verdana, tahoma, arial, helvetica, sans-serif",
+  fontSize: "10px",
+  background: "#DAE7F3",
+  color: "#000",
+  borderRadius: "4px",
   boxShadow:
-    '#505559 0px 0px 1px 2px, #5a5e62 0px 4px 6px -1px, #8b8d90 0px 1px 0px inset',
-  maxWidth: '100%',
-  maxHeight: '100%',
-  overflow: 'scroll',
-  display: 'flex',
-  flexDirection: 'column',
+    "#505559 0px 0px 1px 2px, #5a5e62 0px 4px 6px -1px, #8b8d90 0px 1px 0px inset",
+  maxWidth: "100%",
+  maxHeight: "100%",
+  overflow: "scroll",
+  display: "flex",
+  flexDirection: "column",
   // border: "1px solid grey",
 };
 
@@ -121,12 +121,12 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
       >
         <input
           style={{
-            width: '130px',
-            height: '16px',
-            marginLeft: 'auto',
-            backgroundColor: '#eaeef2',
-            border: '#5e5d63 1px solid',
-            color: '#000000',
+            width: "130px",
+            height: "16px",
+            marginLeft: "auto",
+            backgroundColor: "#eaeef2",
+            border: "#5e5d63 1px solid",
+            color: "#000000",
           }}
         />
         <Flex padding="2px 3px 0 0px">
@@ -156,28 +156,28 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
 							 "legal"`,
         }}
         gridTemplateRows={{
-          sm: 'repeat(6, minmax(max-content))',
-          base: 'repeat(8, max-content)',
+          sm: "repeat(6, minmax(max-content))",
+          base: "repeat(8, max-content)",
         }}
-        gridTemplateColumns={{ sm: '160px 1fr', base: '100vw' }}
+        gridTemplateColumns={{ sm: "160px 1fr", base: "100vw" }}
         gridAutoFlow="dense"
         gridGap="8px"
         // Nicer to read
-        color={useColorModeValue('blackAlpha.700', 'whiteAlpha.700')}
+        color={useColorModeValue("blackAlpha.700", "whiteAlpha.700")}
       >
-        <GridItem style={cardStyle} area={'mainMenu'} boxShadow="base">
+        <GridItem style={cardStyle} area={"mainMenu"} boxShadow="base">
           <GridHeader title="Main Menu" />
           <GridContent>
             <Navigation />
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'welcome'} boxShadow="base">
+        <GridItem style={cardStyle} area={"welcome"} boxShadow="base">
           <GridHeader title="Welcome" />
           <GridContent>
             <List>
               {session ? (
-                <ListItem onClick={() => signOut({ callbackUrl: '/' })}>
+                <ListItem onClick={() => signOut({ callbackUrl: "/" })}>
                   <ListIcon>
                     <MdLogout size="lg" />
                   </ListIcon>
@@ -195,19 +195,19 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'online'} boxShadow="base">
+        <GridItem style={cardStyle} area={"online"} boxShadow="base">
           <GridHeader title="Online" />
           <GridContent>
             <Online />
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'birthdays'} boxShadow="base">
+        <GridItem style={cardStyle} area={"birthdays"} boxShadow="base">
           <GridHeader title="Members Birthdays:" />
           <GridContent>birthdays</GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'contact'} boxShadow="base">
+        <GridItem style={cardStyle} area={"contact"} boxShadow="base">
           <GridHeader title="Contact" />
           <GridContent>
             <Text>
@@ -219,7 +219,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'support'} boxShadow="base">
+        <GridItem style={cardStyle} area={"support"} boxShadow="base">
           <GridHeader title="Support 4hv.org!" />
           <GridContent>
             <Text>
@@ -245,7 +245,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'content'} boxShadow="base">
+        <GridItem style={cardStyle} area={"content"} boxShadow="base">
           <GridHeader title="Forums">
             <ForumForm mode="add" label="New Forum" />
           </GridHeader>
@@ -328,7 +328,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </GridContent>
         </GridItem>
 
-        <GridItem style={cardStyle} area={'legal'} boxShadow="base">
+        <GridItem style={cardStyle} area={"legal"} boxShadow="base">
           <GridHeader title="Legal Information" />
           <GridContent>
             <Text>

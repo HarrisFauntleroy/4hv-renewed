@@ -1,8 +1,8 @@
-import { Flex, List } from '@chakra-ui/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { PropsWithChildren } from 'react';
+import { Flex, List } from "@chakra-ui/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { PropsWithChildren } from "react";
 
 interface NavigationItemProps extends PropsWithChildren {
   href: string;
@@ -36,21 +36,21 @@ const NavLink = ({ href, title }: NavigationItemProps) => {
 
 export const Navigation = () => {
   const list = [
-    { href: '/', title: 'Home' },
-    { href: '/forum', title: 'Forum' },
-    { href: '/members', title: 'Members' },
-    { href: '/membersMap', title: 'Members Map' },
-    { href: 'hvwiki', title: 'HvWiki' },
-    { href: 'chatRoom', title: 'Chat Room' },
-    { href: 'submitNews', title: 'Submit News' },
-    { href: 'siteRules', title: 'Site Rules' },
+    { href: "/", title: "Home" },
+    { href: "/forum", title: "Forum" },
+    { href: "/members", title: "Members" },
+    { href: "/membersMap", title: "Members Map" },
+    { href: "hvwiki", title: "HvWiki" },
+    { href: "chatRoom", title: "Chat Room" },
+    { href: "submitNews", title: "Submit News" },
+    { href: "siteRules", title: "Site Rules" },
   ];
   return (
     <List
       style={{
-        color: '#716d6d',
-        textDecoration: 'underline',
-        fontSize: '10px',
+        color: "#716d6d",
+        textDecoration: "underline",
+        fontSize: "10px",
       }}
     >
       {list.map(NavLink)}

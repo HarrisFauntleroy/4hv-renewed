@@ -1,8 +1,8 @@
-import { Center, Text } from '@mantine/core';
-import { Role } from '@prisma/client';
-import type { NextPageContext } from 'next';
-import { getSession, useSession } from 'next-auth/react';
-import { Fragment, PropsWithChildren } from 'react';
+import { Center, Text } from "@mantine/core";
+import { Role } from "@prisma/client";
+import type { NextPageContext } from "next";
+import { getSession, useSession } from "next-auth/react";
+import { Fragment, PropsWithChildren } from "react";
 
 type AuthProps<T> = PropsWithChildren<T> & { roles?: Role[] };
 
@@ -12,7 +12,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   if (!session) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };
@@ -35,7 +35,7 @@ function Auth<T>({ children, roles }: AuthProps<T>) {
     </Center>
   );
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return <CenterMessage message="Loading..." />;
   }
 

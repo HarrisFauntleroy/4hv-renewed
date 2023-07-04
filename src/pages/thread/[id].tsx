@@ -13,16 +13,16 @@ import {
   Stack,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { PropsWithChildren } from 'react';
-import { Comment } from '../../components/Comment';
-import { CommentForm } from '../../components/Comment/Form';
-import { Loading } from '../../components/Loading';
-import { ThreadForm } from '../../components/Thread/Form';
-import { trpc } from '../../utils/trpc';
+} from "@chakra-ui/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { PropsWithChildren } from "react";
+import { Comment } from "../../components/Comment";
+import { CommentForm } from "../../components/Comment/Form";
+import { Loading } from "../../components/Loading";
+import { ThreadForm } from "../../components/Thread/Form";
+import { trpc } from "../../utils/trpc";
 
 const ThreadLayout = ({ children }: PropsWithChildren) => (
   <Grid
@@ -36,14 +36,14 @@ const ThreadLayout = ({ children }: PropsWithChildren) => (
 			 			 "content"`,
     }}
     gridTemplateRows={{
-      sm: 'repeat(6, minmax(max-content))',
-      base: 'repeat(8, max-content)',
+      sm: "repeat(6, minmax(max-content))",
+      base: "repeat(8, max-content)",
     }}
-    gridTemplateColumns={{ sm: '160px 1fr', base: '100vw' }}
+    gridTemplateColumns={{ sm: "160px 1fr", base: "100vw" }}
     gridAutoFlow="dense"
     gridGap="8px"
     // Nicer to read
-    color={useColorModeValue('blackAlpha.700', 'whiteAlpha.700')}
+    color={useColorModeValue("blackAlpha.700", "whiteAlpha.700")}
   >
     {children}
   </Grid>
@@ -53,9 +53,9 @@ const Thread = () => {
   const router = useRouter();
   const id = String(router.query.id);
 
-  const { data: thread, status } = trpc.useQuery(['thread.byId', { id }]);
+  const { data: thread, status } = trpc.useQuery(["thread.byId", { id }]);
 
-  if (status === 'loading') return <Loading />;
+  if (status === "loading") return <Loading />;
 
   return (
     <Stack>
@@ -98,13 +98,13 @@ const Thread = () => {
         </Flex>
       </Stack>
       <ThreadLayout>
-        <GridItem area={'user'} boxShadow="base">
-          <Avatar variant="square" src={thread?.user.image ?? ''} />
+        <GridItem area={"user"} boxShadow="base">
+          <Avatar variant="square" src={thread?.user.image ?? ""} />
           <Link href={`/user/${thread?.userId}`}>
             <Text>{thread?.user.name}</Text>
           </Link>
         </GridItem>
-        <GridItem area={'content'} boxShadow="base">
+        <GridItem area={"content"} boxShadow="base">
           <Card>
             <CardHeader>{thread?.title}</CardHeader>
             <CardBody>{thread?.content}</CardBody>

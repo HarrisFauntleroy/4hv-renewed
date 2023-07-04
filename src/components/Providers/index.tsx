@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
-import { IntlProvider } from './I18n';
-import Theme from './Theme';
-import ThemeOld from './ThemeOld';
+import type { PropsWithChildren } from "react";
+import { IntlProvider } from "./I18n";
+import Theme from "./Theme";
+import ThemeOld from "./ThemeOld";
 
 export function AppContext({ children }: PropsWithChildren) {
   return (

@@ -1,25 +1,25 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { Role } from '@prisma/client';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import type { NextAuthOptions } from 'next-auth';
-import NextAuth, { getServerSession } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { prisma } from 'src/server/prisma';
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { Role } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextAuthOptions } from "next-auth";
+import NextAuth, { getServerSession } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "src/server/prisma";
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: 'database',
+    strategy: "database",
   },
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || '',
-      clientSecret: process.env.GOOGLE_SECRET || '',
+      clientId: process.env.GOOGLE_ID || "",
+      clientSecret: process.env.GOOGLE_SECRET || "",
     }),
   ],
   debug: false,
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
   callbacks: {
     async session({ session, user }) {
@@ -57,11 +57,11 @@ export default NextAuth(authOptions);
 
 export const hasUserSession = async (
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) => {
   const session = await getServerSession(req, res, authOptions);
   if (session) {
     return session.userId;
   }
-  throw new Error('User not found!');
+  throw new Error("User not found!");
 };

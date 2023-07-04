@@ -1,6 +1,6 @@
-import { type InputDataTypes } from '../Table';
-import { Button, Flex, Input, Select, Text } from '@chakra-ui/react';
-import { Table as TableType } from '@tanstack/react-table';
+import { type InputDataTypes } from "../Table";
+import { Button, Flex, Input, Select, Text } from "@chakra-ui/react";
+import { Table as TableType } from "@tanstack/react-table";
 
 interface PaginationProps<TData extends InputDataTypes> {
   table: TableType<TData>;
@@ -19,7 +19,7 @@ export function Pagination<TData extends InputDataTypes>({
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
       >
-        {'<<'}
+        {"<<"}
       </Button>
       <Button
         size="xs"
@@ -27,7 +27,7 @@ export function Pagination<TData extends InputDataTypes>({
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
-        {'<'}
+        {"<"}
       </Button>
       <Button
         size="xs"
@@ -35,7 +35,7 @@ export function Pagination<TData extends InputDataTypes>({
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
       >
-        {'>'}
+        {">"}
       </Button>
       <Button
         size="xs"
@@ -43,7 +43,7 @@ export function Pagination<TData extends InputDataTypes>({
         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
         disabled={!table.getCanNextPage()}
       >
-        {'>>'}
+        {">>"}
       </Button>
       <Flex gap={1}>
         <Flex gap={1}>Page</Flex>

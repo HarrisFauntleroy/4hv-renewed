@@ -1,8 +1,8 @@
-import { createRouter } from '../../createRouter';
-import { prisma } from '../../prisma';
-import { Prisma } from '@prisma/client';
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import { createRouter } from "../../createRouter";
+import { prisma } from "../../prisma";
+import { Prisma } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 const defaultCommentSelect = Prisma.validator<Prisma.CommentSelect>()({
   id: true,
@@ -22,7 +22,7 @@ const defaultCommentSelect = Prisma.validator<Prisma.CommentSelect>()({
 });
 
 export const commentRouter = createRouter()
-  .mutation('create', {
+  .mutation("create", {
     input: z.object({
       userId: z.string(),
       content: z.string(),
@@ -36,7 +36,7 @@ export const commentRouter = createRouter()
     },
   })
   // read
-  .query('all', {
+  .query("all", {
     async resolve() {
       /**
        * For pagination you can have a look at this docs site
@@ -53,7 +53,7 @@ export const commentRouter = createRouter()
       });
     },
   })
-  .query('byId', {
+  .query("byId", {
     input: z.object({
       id: z.string(),
     }),
@@ -67,14 +67,14 @@ export const commentRouter = createRouter()
       });
       if (!comment) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No comment with id '${id}'`,
         });
       }
       return comment;
     },
   })
-  .query('byUser', {
+  .query("byUser", {
     input: z.object({
       userId: z.string(),
     }),
@@ -91,14 +91,14 @@ export const commentRouter = createRouter()
       });
       if (!comment) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No comment with userId '${userId}'`,
         });
       }
       return comment;
     },
   })
-  .mutation('update', {
+  .mutation("update", {
     input: z.object({
       id: z.string(),
       userId: z.string(),
@@ -116,7 +116,7 @@ export const commentRouter = createRouter()
     },
   })
   // delete
-  .mutation('delete', {
+  .mutation("delete", {
     input: z.object({
       id: z.string(),
     }),
@@ -132,7 +132,7 @@ export const commentRouter = createRouter()
     },
   })
   // unarchive
-  .mutation('unarchive', {
+  .mutation("unarchive", {
     input: z.object({
       id: z.string(),
     }),
@@ -148,7 +148,7 @@ export const commentRouter = createRouter()
     },
   })
   // archive
-  .mutation('archive', {
+  .mutation("archive", {
     input: z.object({
       id: z.string(),
     }),

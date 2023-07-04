@@ -3,19 +3,19 @@
  * Context provider for incoming requests
  *
  */
-import { PrismaClient } from '@prisma/client';
-import * as trpc from '@trpc/server';
-import * as trpcNext from '@trpc/server/adapters/next';
-import { type NodeHTTPCreateContextFnOptions } from '@trpc/server/adapters/node-http';
-import { IncomingMessage } from 'http';
-import { getSession } from 'next-auth/react';
-import ws from 'ws';
+import { PrismaClient } from "@prisma/client";
+import * as trpc from "@trpc/server";
+import * as trpcNext from "@trpc/server/adapters/next";
+import { type NodeHTTPCreateContextFnOptions } from "@trpc/server/adapters/node-http";
+import { IncomingMessage } from "http";
+import { getSession } from "next-auth/react";
+import ws from "ws";
 
 const prisma = new PrismaClient({
   log:
-    process.env.NODE_ENV === 'development'
-      ? ['query', 'error', 'warn']
-      : ['error'],
+    process.env.NODE_ENV === "development"
+      ? ["query", "error", "warn"]
+      : ["error"],
 });
 
 export type ContextInner = trpc.inferAsyncReturnType<typeof createContextInner>;
@@ -39,18 +39,18 @@ export const createContext = async ({
   | trpcNext.CreateNextContextOptions
   | NodeHTTPCreateContextFnOptions<IncomingMessage, ws>) => {
   const session = await getSession({ req });
-  console.log('createContext for', session?.user?.name ?? 'unknown user');
+  console.log("createContext for", session?.user?.name ?? "unknown user");
 
-  let useMockProvider = process.env.NODE_ENV === 'test';
+  let useMockProvider = process.env.NODE_ENV === "test";
 
   const { GITHUB_CLIENT_ID, GITHUB_SECRET, NODE_ENV, APP_ENV } = process.env;
 
   if (
-    (NODE_ENV !== 'production' || APP_ENV === 'test') &&
+    (NODE_ENV !== "production" || APP_ENV === "test") &&
     (!GITHUB_CLIENT_ID || !GITHUB_SECRET)
   ) {
     console.log(
-      '⚠️ Using mocked GitHub auth correct credentials were not added',
+      "⚠️ Using mocked GitHub auth correct credentials were not added"
     );
     useMockProvider = true;
   }

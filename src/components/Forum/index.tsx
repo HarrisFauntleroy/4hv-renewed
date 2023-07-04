@@ -1,6 +1,6 @@
-import { Subforum, SubforumWithThreads } from '../Subforum';
-import { SubforumForm } from '../Subforum/Form';
-import { SettingsIcon } from '@chakra-ui/icons';
+import { Subforum, SubforumWithThreads } from "../Subforum";
+import { SubforumForm } from "../Subforum/Form";
+import { SettingsIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Table,
@@ -10,8 +10,8 @@ import {
   Th,
   Thead,
   Tr,
-} from '@chakra-ui/react';
-import { Forum as PrismaForum, User } from '@prisma/client';
+} from "@chakra-ui/react";
+import { Forum as PrismaForum, User } from "@prisma/client";
 
 export interface ForumWithSubforums extends PrismaForum {
   user: User;

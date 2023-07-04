@@ -1,7 +1,7 @@
 export const middleware = async () => {
-  console.log('middleware');
+  console.log("middleware");
 };
 
 export const config = {
-  matcher: '/post/:path*',
+  matcher: "/post/:path*",
 };

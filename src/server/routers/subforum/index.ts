@@ -1,8 +1,8 @@
-import { createRouter } from '../../createRouter';
-import { prisma } from '../../prisma';
-import { Prisma } from '@prisma/client';
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import { createRouter } from "../../createRouter";
+import { prisma } from "../../prisma";
+import { Prisma } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 const defaultSubforumSelect = Prisma.validator<Prisma.SubforumSelect>()({
   id: true,
@@ -30,7 +30,7 @@ const defaultSubforumSelect = Prisma.validator<Prisma.SubforumSelect>()({
 });
 
 export const subforumRouter = createRouter()
-  .mutation('create', {
+  .mutation("create", {
     input: z.object({
       userId: z.string(),
       title: z.string(),
@@ -44,7 +44,7 @@ export const subforumRouter = createRouter()
       });
     },
   })
-  .mutation('update', {
+  .mutation("update", {
     input: z.object({
       id: z.string(),
       userId: z.string(),
@@ -62,7 +62,7 @@ export const subforumRouter = createRouter()
       });
     },
   })
-  .mutation('delete', {
+  .mutation("delete", {
     input: z.object({
       id: z.string(),
     }),
@@ -77,7 +77,7 @@ export const subforumRouter = createRouter()
       };
     },
   })
-  .mutation('unarchive', {
+  .mutation("unarchive", {
     input: z.object({
       id: z.string(),
     }),
@@ -92,7 +92,7 @@ export const subforumRouter = createRouter()
       };
     },
   })
-  .mutation('archive', {
+  .mutation("archive", {
     input: z.object({
       id: z.string(),
     }),
@@ -107,7 +107,7 @@ export const subforumRouter = createRouter()
       };
     },
   })
-  .query('all', {
+  .query("all", {
     async resolve() {
       return prisma.subforum.findMany({
         where: {
@@ -119,7 +119,7 @@ export const subforumRouter = createRouter()
       });
     },
   })
-  .query('byId', {
+  .query("byId", {
     input: z.object({
       id: z.string(),
     }),
@@ -133,14 +133,14 @@ export const subforumRouter = createRouter()
       });
       if (!subforum) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No subforum with id '${id}'`,
         });
       }
       return subforum;
     },
   })
-  .query('byUser', {
+  .query("byUser", {
     input: z.object({
       userId: z.string(),
     }),
@@ -157,7 +157,7 @@ export const subforumRouter = createRouter()
       });
       if (!subforum) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No subforum with userId '${userId}'`,
         });
       }

@@ -13,13 +13,13 @@ import {
   Text,
   useDisclosure,
   useToast,
-} from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-import logger from '../../utils/logger';
-import { trpc } from '../../utils/trpc';
-import { AlertPop } from '../Form/AlertPop';
-import { ForumWithSubforums } from './index';
+} from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import logger from "../../utils/logger";
+import { trpc } from "../../utils/trpc";
+import { AlertPop } from "../Form/AlertPop";
+import { ForumWithSubforums } from "./index";
 
 type FormValues = ForumWithSubforums;
 
@@ -47,19 +47,19 @@ export const Form = ({ onSubmit, formData }: FormProps) => {
           variant="flushed"
           type="text"
           placeholder="Title"
-          {...register('title', {
-            required: { value: true, message: 'Must not be empty' },
-            minLength: { value: 3, message: 'Too short' },
-            maxLength: { value: 1024, message: 'Too long' },
+          {...register("title", {
+            required: { value: true, message: "Must not be empty" },
+            minLength: { value: 3, message: "Too short" },
+            maxLength: { value: 1024, message: "Too long" },
           })}
         />
-        {errors.title && <AlertPop message={errors.title.message || ''} />}
+        {errors.title && <AlertPop message={errors.title.message || ""} />}
       </ModalBody>
       <ModalFooter>
         <Button
           borderRadius="md"
           bg="green.300"
-          _hover={{ bg: 'green.400' }}
+          _hover={{ bg: "green.400" }}
           type="submit"
         >
           Submit
@@ -69,11 +69,11 @@ export const Form = ({ onSubmit, formData }: FormProps) => {
   );
 };
 
-const allForums = 'forum.all';
+const allForums = "forum.all";
 
-interface ForumFormProps extends Pick<IconButtonProps, 'icon'> {
+interface ForumFormProps extends Pick<IconButtonProps, "icon"> {
   forum?: ForumWithSubforums;
-  mode: 'edit' | 'add' | 'delete' | 'archive' | 'unarchive';
+  mode: "edit" | "add" | "delete" | "archive" | "unarchive";
   label?: string;
 }
 
@@ -82,31 +82,31 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const addForum = trpc.useMutation('forum.add', {
+  const addForum = trpc.useMutation("forum.add", {
     async onSuccess() {
       await utils.invalidateQueries([allForums]);
     },
   });
 
-  const editForum = trpc.useMutation('forum.edit', {
+  const editForum = trpc.useMutation("forum.edit", {
     async onSuccess() {
       await utils.invalidateQueries([allForums]);
     },
   });
 
-  const deleteForum = trpc.useMutation('forum.delete', {
+  const deleteForum = trpc.useMutation("forum.delete", {
     async onSuccess() {
       await utils.invalidateQueries([allForums]);
     },
   });
 
-  const archiveForum = trpc.useMutation('forum.archive', {
+  const archiveForum = trpc.useMutation("forum.archive", {
     async onSuccess() {
       await utils.invalidateQueries([allForums]);
     },
   });
 
-  const unarchiveForum = trpc.useMutation('forum.unarchive', {
+  const unarchiveForum = trpc.useMutation("forum.unarchive", {
     async onSuccess() {
       await utils.invalidateQueries([allForums]);
     },
@@ -120,7 +120,7 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
 
   const middlebit = () => {
     switch (mode) {
-      case 'add':
+      case "add":
         return (
           userId && (
             <Form
@@ -132,9 +132,9 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Forumed!',
-                      status: 'success',
+                    return toast({
+                      title: "Forumed!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -144,7 +144,7 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
             />
           )
         );
-      case 'edit':
+      case "edit":
         return (
           userId &&
           forum &&
@@ -160,9 +160,9 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
                   })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Updated!',
-                      status: 'success',
+                    return toast({
+                      title: "Updated!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -172,16 +172,16 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
             />
           )
         );
-      case 'delete':
+      case "delete":
         return (
           forum && (
             <Button
               onClick={() =>
                 deleteForum.mutateAsync({ id: forum.id }).then(() => {
                   onClose();
-                  toast({
-                    title: 'Deleted!',
-                    status: 'success',
+                  return toast({
+                    title: "Deleted!",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
                   });
@@ -192,7 +192,7 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
             </Button>
           )
         );
-      case 'archive':
+      case "archive":
         return (
           forum && (
             <Button
@@ -201,9 +201,9 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
                   .mutateAsync({ id: forum.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Archived!',
-                      status: 'success',
+                    return toast({
+                      title: "Archived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });
@@ -215,7 +215,7 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
             </Button>
           )
         );
-      case 'unarchive':
+      case "unarchive":
         return (
           forum && (
             <Button
@@ -224,9 +224,9 @@ export const ForumForm = ({ forum, mode, icon, label }: ForumFormProps) => {
                   .mutateAsync({ id: forum.id })
                   .then(() => {
                     onClose();
-                    toast({
-                      title: 'Unarchived!',
-                      status: 'success',
+                    return toast({
+                      title: "Unarchived!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     });

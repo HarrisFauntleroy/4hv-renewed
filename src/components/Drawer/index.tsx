@@ -3,8 +3,8 @@ import {
   DrawerCloseButton,
   DrawerContent,
   DrawerOverlay,
-} from '@chakra-ui/react';
-import React, { PropsWithChildren } from 'react';
+} from "@chakra-ui/react";
+import React, { PropsWithChildren } from "react";
 
 interface DrawerProps extends PropsWithChildren {
   isOpen: boolean;

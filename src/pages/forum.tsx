@@ -3,14 +3,14 @@
  * Forums page
  *
  */
-import { Flex, Stack } from '@chakra-ui/react';
-import { Role } from '@prisma/client';
-import { Forum, ForumWithSubforums } from 'src/components/Forum';
-import Head from '../components/Head';
-import { Loading } from '../components/Loading';
-import { trpc } from '../utils/trpc';
+import { Flex, Stack } from "@chakra-ui/react";
+import { Role } from "@prisma/client";
+import { Forum, ForumWithSubforums } from "src/components/Forum";
+import Head from "../components/Head";
+import { Loading } from "../components/Loading";
+import { trpc } from "../utils/trpc";
 
-const allForums = 'forum.all';
+const allForums = "forum.all";
 
 const Forums = () => {
   const { data, status } = trpc.useQuery([allForums]);
@@ -19,7 +19,7 @@ const Forums = () => {
   //   userId: userId || '',
   // });
 
-  if (status === 'loading') return <Loading />;
+  if (status === "loading") return <Loading />;
 
   return (
     <Stack gap={2} overflow="scroll">

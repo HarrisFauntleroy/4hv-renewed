@@ -2,23 +2,23 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
-} from '@mantine/core';
-import { useHotkeys } from '@mantine/hooks';
-import { ModalsProvider } from '@mantine/modals';
-import { Notifications } from '@mantine/notifications';
-import { setCookie } from 'cookies-next';
-import { PropsWithChildren, useState } from 'react';
+} from "@mantine/core";
+import { useHotkeys } from "@mantine/hooks";
+import { ModalsProvider } from "@mantine/modals";
+import { Notifications } from "@mantine/notifications";
+import { setCookie } from "cookies-next";
+import { PropsWithChildren, useState } from "react";
 
 export default function ThemeProvider<T>({ children }: PropsWithChildren<T>) {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
 
-  useHotkeys([['mod+J', () => toggleColorScheme()]]);
+  useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   function toggleColorScheme(value?: ColorScheme) {
     const nextColorScheme =
-      value || (colorScheme === 'dark' ? 'light' : 'dark');
+      value || (colorScheme === "dark" ? "light" : "dark");
     setColorScheme(nextColorScheme);
-    setCookie('mantine-color-scheme', nextColorScheme, {
+    setCookie("mantine-color-scheme", nextColorScheme, {
       maxAge: 60 * 60 * 24 * 30,
     });
   }

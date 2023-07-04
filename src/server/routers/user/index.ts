@@ -1,8 +1,8 @@
-import { createRouter } from '../../createRouter';
-import { prisma } from '../../prisma';
-import { Prisma } from '@prisma/client';
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import { createRouter } from "../../createRouter";
+import { prisma } from "../../prisma";
+import { Prisma } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 const defaultUserSelect = Prisma.validator<Prisma.UserSelect>()({
   id: true,
@@ -25,7 +25,7 @@ const defaultUserSelect = Prisma.validator<Prisma.UserSelect>()({
 
 export const userRouter = createRouter()
   // create
-  .mutation('add', {
+  .mutation("add", {
     input: z.object({
       userId: z.string(),
       title: z.string(),
@@ -39,7 +39,7 @@ export const userRouter = createRouter()
     },
   })
   // read
-  .query('all', {
+  .query("all", {
     async resolve() {
       /**
        * For pagination you can have a look at this docs site
@@ -53,7 +53,7 @@ export const userRouter = createRouter()
       });
     },
   })
-  .query('online', {
+  .query("online", {
     async resolve() {
       /**
        * For pagination you can have a look at this docs site
@@ -73,7 +73,7 @@ export const userRouter = createRouter()
       });
     },
   })
-  .query('byId', {
+  .query("byId", {
     input: z.object({
       id: z.string(),
     }),
@@ -87,14 +87,14 @@ export const userRouter = createRouter()
       });
       if (!user) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No user with id '${id}'`,
         });
       }
       return user;
     },
   })
-  .query('byUser', {
+  .query("byUser", {
     input: z.object({
       userId: z.string(),
     }),
@@ -108,7 +108,7 @@ export const userRouter = createRouter()
       });
       if (!user) {
         throw new TRPCError({
-          code: 'NOT_FOUND',
+          code: "NOT_FOUND",
           message: `No user with userId '${userId}'`,
         });
       }
@@ -116,7 +116,7 @@ export const userRouter = createRouter()
     },
   })
   // update
-  .mutation('edit', {
+  .mutation("edit", {
     input: z.object({
       id: z.string(),
       userId: z.string(),
@@ -134,7 +134,7 @@ export const userRouter = createRouter()
     },
   })
   // delete
-  .mutation('delete', {
+  .mutation("delete", {
     input: z.object({
       id: z.string(),
     }),

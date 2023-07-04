@@ -7,10 +7,10 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['https://lh3.googleusercontent.com'],
+    domains: ["https://lh3.googleusercontent.com"],
   },
   experimental: {
     appDir: true,
-    esmExternals: 'loose',
+    esmExternals: "loose",
   },
 };

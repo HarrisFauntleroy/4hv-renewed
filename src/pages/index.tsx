@@ -1,5 +1,5 @@
-import { Card } from '@mantine/core';
-import { Changelog } from 'src/components/Releases';
+import { Card } from "@mantine/core";
+import { Changelog } from "src/components/Releases";
 
 const Index = () => {
   return (

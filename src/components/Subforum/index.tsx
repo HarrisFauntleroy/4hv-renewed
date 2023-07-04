@@ -1,7 +1,7 @@
-import { Link, Td, Text, Tr } from '@chakra-ui/react';
-import { User, type Subforum as PrismaSubforum } from '@prisma/client';
-import Image from 'next/image';
-import { ThreadWithComments } from '../Thread';
+import { Link, Td, Text, Tr } from "@chakra-ui/react";
+import { User, type Subforum as PrismaSubforum } from "@prisma/client";
+import Image from "next/image";
+import { ThreadWithComments } from "../Thread";
 
 export interface SubforumWithThreads extends PrismaSubforum {
   user: User;
